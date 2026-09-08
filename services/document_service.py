@@ -543,3 +543,29 @@ class DocumentService:
             return {"success": False, "message": f"操作失败：{str(e)}"}
         finally:
             session.close()
+
+    @staticmethod
+    def get_version_by_id(version_id: int):
+        """
+        根据ID获取版本信息
+        :param version_id: 版本ID
+        :return: DocumentVersion对象或None
+        """
+        session = get_session()
+        try:
+            return session.query(DocumentVersion).filter_by(id=version_id).first()
+        finally:
+            session.close()
+
+    @staticmethod
+    def get_document_by_id(document_id: int):
+        """
+        根据ID获取文档信息
+        :param document_id: 文档ID
+        :return: Document对象或None
+        """
+        session = get_session()
+        try:
+            return session.query(Document).filter_by(id=document_id).first()
+        finally:
+            session.close()

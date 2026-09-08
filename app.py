@@ -277,13 +277,34 @@ def show_chat_interface(role: str):
 
             # 如果有引用，显示引用
             if message["role"] == "assistant" and "references" in message and message["references"]:
-                with st.expander("📎 查看引用来源"):
-                    for idx, ref in enumerate(message["references"], 1):
-                        st.markdown(f"**来源 {idx}：{ref['source_name']}**")
-                        if ref['metadata'].get('page'):
-                            st.caption(f"页码：{ref['metadata']['page']}")
+                with st.expander(f"📎 查看引用来源（{len(message['references'])}条）"):
+                    for ref in message["references"]:
+                        # 构建标题
+                        title_parts = [f"**[{ref.get('reference_id', '?')}] {ref['source_name']}**"]
+                        if ref.get('version_number'):
+                            title_parts.append(f"（版本 {ref['version_number']}）")
+                        st.markdown(" ".join(title_parts))
+
+                        # 显示定位信息
+                        location_parts = []
+                        if ref.get('section'):
+                            location_parts.append(f"📍 {ref['section']}")
+                        if ref.get('relevance_score'):
+                            location_parts.append(f"🎯 相关度 {ref['relevance_score']:.2%}")
+                        if location_parts:
+                            st.caption(" · ".join(location_parts))
+
+                        # 显示内容摘要
                         st.text(ref['content'])
                         st.divider()
+
+            # 显示性能信息（仅最新消息）
+            if message["role"] == "assistant" and message == st.session_state["messages"][-1]:
+                if "retrieval_time_ms" in message:
+                    perf_text = f"⏱️ 检索 {message['retrieval_time_ms']}ms · 生成 {message['generation_time_ms']}ms · 总计 {message['total_time_ms']}ms"
+                    if message.get('retrieved_count', 0) > 0:
+                        perf_text += f" · 检索 {message['retrieved_count']} → 有效 {message.get('valid_count', 0)}"
+                    st.caption(perf_text)
 
     # 用户输入
     prompt = st.chat_input("请输入您的问题...")
@@ -302,6 +323,7 @@ def show_chat_interface(role: str):
 
                 answer = result["answer"]
                 references = result.get("references", [])
+                has_answer = result.get("has_answer", True)
 
                 # 显示助手回复
                 with st.chat_message("assistant"):
@@ -309,19 +331,45 @@ def show_chat_interface(role: str):
 
                     # 显示引用
                     if references:
-                        with st.expander("📎 查看引用来源"):
-                            for idx, ref in enumerate(references, 1):
-                                st.markdown(f"**来源 {idx}：{ref['source_name']}**")
-                                if ref['metadata'].get('page'):
-                                    st.caption(f"页码：{ref['metadata']['page']}")
+                        with st.expander(f"📎 查看引用来源（{len(references)}条）"):
+                            for ref in references:
+                                # 构建标题
+                                title_parts = [f"**[{ref.get('reference_id', '?')}] {ref['source_name']}**"]
+                                if ref.get('version_number'):
+                                    title_parts.append(f"（版本 {ref['version_number']}）")
+                                st.markdown(" ".join(title_parts))
+
+                                # 显示定位信息
+                                location_parts = []
+                                if ref.get('section'):
+                                    location_parts.append(f"📍 {ref['section']}")
+                                if ref.get('relevance_score'):
+                                    location_parts.append(f"🎯 相关度 {ref['relevance_score']:.2%}")
+                                if location_parts:
+                                    st.caption(" · ".join(location_parts))
+
+                                # 显示内容摘要
                                 st.text(ref['content'])
                                 st.divider()
+
+                    # 显示性能信息
+                    if "retrieval_time_ms" in result:
+                        perf_text = f"⏱️ 检索 {result['retrieval_time_ms']}ms · 生成 {result['generation_time_ms']}ms · 总计 {result['total_time_ms']}ms"
+                        if result.get('retrieved_count', 0) > 0:
+                            perf_text += f" · 检索 {result['retrieved_count']} → 有效 {result.get('valid_count', 0)}"
+                        st.caption(perf_text)
 
                 # 保存到会话
                 st.session_state["messages"].append({
                     "role": "assistant",
                     "content": answer,
-                    "references": references
+                    "references": references,
+                    "has_answer": has_answer,
+                    "retrieval_time_ms": result.get("retrieval_time_ms", 0),
+                    "generation_time_ms": result.get("generation_time_ms", 0),
+                    "total_time_ms": result.get("total_time_ms", 0),
+                    "retrieved_count": result.get("retrieved_count", 0),
+                    "valid_count": result.get("valid_count", 0)
                 })
 
             except Exception as e:
