@@ -156,6 +156,11 @@ class AuditLog(Base):
 def get_engine():
     """获取数据库引擎"""
     db_path = os.getenv("DATABASE_PATH", "data/knowbase.db")
+
+    # 支持内存数据库（用于测试）
+    if db_path == ':memory:':
+        return create_engine('sqlite:///:memory:', echo=False)
+
     # 确保目录存在
     os.makedirs(os.path.dirname(db_path), exist_ok=True)
     return create_engine(f'sqlite:///{db_path}', echo=False)

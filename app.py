@@ -14,6 +14,9 @@ load_dotenv()
 from services.auth_service import AuthService
 from services.permission_service import PermissionService
 from services.document_service import DocumentService
+from services.interaction_service import InteractionService
+from services.feedback_service import FeedbackService
+from services.audit_service import AuditService
 from rag.vector_store import VectorStoreService
 from rag.rag_service import RagSummarizeService
 from models.database import get_session, KnowledgeSpace
@@ -21,6 +24,7 @@ from utils.config_handler import chroma_conf
 from utils.path_tool import get_abs_path
 from utils.logger_handler import logger
 from pages.document_management import show_document_management_page
+from pages.audit_logs import show_audit_logs_page
 
 # 页面配置
 st.set_page_config(
@@ -36,6 +40,8 @@ if "user" not in st.session_state:
     st.session_state["user"] = None
 if "messages" not in st.session_state:
     st.session_state["messages"] = []
+if "chat_session_id" not in st.session_state:
+    st.session_state["chat_session_id"] = None
 
 
 # ==================== 登录页面 ====================
@@ -100,6 +106,7 @@ def show_main_app():
             st.session_state["logged_in"] = False
             st.session_state["user"] = None
             st.session_state["messages"] = []
+            st.session_state.pop("chat_session_id", None)  # 清除会话ID
             st.rerun()
 
     st.divider()
@@ -119,6 +126,11 @@ def show_main_app():
             show_document_management_page()
         else:
             st.error("您没有权限访问文档管理页面")
+    elif st.session_state["current_page"] == "audit":
+        if role == 'admin':  # 仅管理员可访问审计日志
+            show_audit_logs_page()
+        else:
+            st.error("您没有权限访问审计日志页面")
 
 
 # ==================== 侧边栏 ====================
@@ -152,6 +164,13 @@ def show_sidebar(role: str):
             st.session_state["current_page"] = "documents"
             st.rerun()
 
+        # 审计日志仅管理员可见
+        if role == 'admin':
+            if st.button("📊 审计日志", use_container_width=True,
+                        type="primary" if st.session_state["current_page"] == "audit" else "secondary"):
+                st.session_state["current_page"] = "audit"
+                st.rerun()
+
         st.divider()
         show_document_upload()
     else:
@@ -162,6 +181,7 @@ def show_sidebar(role: str):
     # 新建会话
     if st.button("🆕 新建会话", use_container_width=True):
         st.session_state["messages"] = []
+        st.session_state["chat_session_id"] = None
         st.rerun()
 
 
@@ -233,12 +253,34 @@ def show_document_upload():
                     document_name=safe_name
                 )
 
+                # 记录审计
+                action_type = 'document_new_version' if doc_result.get('is_new_version') else 'document_upload'
+                AuditService.record_document_operation(
+                    user_id=user_id,
+                    action_type=action_type,
+                    document_id=doc_result["document_id"],
+                    version_id=doc_result["version_id"],
+                    space_id=space_id,
+                    is_success=index_result["success"],
+                    error_message=index_result.get("message") if not index_result["success"] else None
+                )
+
                 results.append({
                     "name": safe_name,
                     "doc_result": doc_result,
                     "index_result": index_result
                 })
             else:
+                # 记录失败审计
+                AuditService.record_document_operation(
+                    user_id=user_id,
+                    action_type='document_upload',
+                    document_id=doc_result.get("document_id", 0),
+                    space_id=space_id,
+                    is_success=False,
+                    error_message=doc_result.get("message")
+                )
+
                 results.append({
                     "name": safe_name,
                     "doc_result": doc_result,
@@ -306,6 +348,57 @@ def show_chat_interface(role: str):
                         perf_text += f" · 检索 {message['retrieved_count']} → 有效 {message.get('valid_count', 0)}"
                     st.caption(perf_text)
 
+            # 显示反馈按钮（仅助手回复且持久化成功）
+            if message["role"] == "assistant" and message.get("message_id"):
+                msg_id = message["message_id"]
+                feedback_key = f"show_feedback_{msg_id}"
+
+                col1, col2, col3 = st.columns([1, 1, 10])
+                with col1:
+                    # 点赞按钮
+                    if st.button("👍", key=f"thumbs_up_{msg_id}"):
+                        feedback_result = FeedbackService.upsert_feedback(
+                            user_id=st.session_state["user"]["id"],
+                            message_id=msg_id,
+                            feedback_type="thumbs_up"
+                        )
+                        if feedback_result["success"]:
+                            st.success("感谢您的反馈！")
+                        else:
+                            st.error(feedback_result.get("error", "反馈失败"))
+
+                with col2:
+                    # 点踩按钮
+                    if st.button("👎", key=f"thumbs_down_{msg_id}"):
+                        st.session_state[feedback_key] = True
+                        st.rerun()
+
+                # 如果点踩后显示输入框
+                if st.session_state.get(feedback_key):
+                    feedback_content = st.text_area(
+                        "请告诉我们哪里需要改进（选填）",
+                        max_chars=500,
+                        key=f"feedback_content_{msg_id}"
+                    )
+                    col_a, col_b, _ = st.columns([1, 1, 10])
+                    with col_a:
+                        if st.button("提交", key=f"submit_feedback_{msg_id}"):
+                            feedback_result = FeedbackService.upsert_feedback(
+                                user_id=st.session_state["user"]["id"],
+                                message_id=msg_id,
+                                feedback_type="thumbs_down",
+                                content=feedback_content if feedback_content else None
+                            )
+                            if feedback_result["success"]:
+                                st.success("感谢您的反馈！")
+                                st.session_state.pop(feedback_key, None)
+                            else:
+                                st.error(feedback_result.get("error", "反馈失败"))
+                    with col_b:
+                        if st.button("取消", key=f"cancel_feedback_{msg_id}"):
+                            st.session_state.pop(feedback_key, None)
+                            st.rerun()
+
     # 用户输入
     prompt = st.chat_input("请输入您的问题...")
 
@@ -359,7 +452,36 @@ def show_chat_interface(role: str):
                             perf_text += f" · 检索 {result['retrieved_count']} → 有效 {result.get('valid_count', 0)}"
                         st.caption(perf_text)
 
-                # 保存到会话
+                # 持久化问答记录
+                message_id = None
+                persist_success = False
+                try:
+                    persist_result = InteractionService.record_exchange(
+                        user_id=st.session_state["user"]["id"],
+                        session_id=st.session_state.get("chat_session_id"),
+                        query=prompt,
+                        rag_result=result
+                    )
+
+                    if persist_result["success"]:
+                        # 更新会话ID
+                        st.session_state["chat_session_id"] = persist_result["session_id"]
+                        message_id = persist_result["message_id"]
+                        persist_success = True
+
+                        # 记录审计
+                        AuditService.record_rag_query(
+                            user_id=st.session_state["user"]["id"],
+                            message_id=message_id,
+                            query=prompt,
+                            rag_result=result
+                        )
+                    else:
+                        logger.error(f"持久化失败：{persist_result.get('error')}")
+                except Exception as persist_error:
+                    logger.error(f"持久化异常：{str(persist_error)}", exc_info=True)
+
+                # 保存到会话（包含message_id用于反馈）
                 st.session_state["messages"].append({
                     "role": "assistant",
                     "content": answer,
@@ -369,17 +491,19 @@ def show_chat_interface(role: str):
                     "generation_time_ms": result.get("generation_time_ms", 0),
                     "total_time_ms": result.get("total_time_ms", 0),
                     "retrieved_count": result.get("retrieved_count", 0),
-                    "valid_count": result.get("valid_count", 0)
+                    "valid_count": result.get("valid_count", 0),
+                    "message_id": message_id if persist_success else None
                 })
 
             except Exception as e:
                 logger.error(f"对话生成失败：{str(e)}", exc_info=True)
-                error_msg = f"抱歉，系统遇到错误：{str(e)}"
+                error_msg = "抱歉，系统遇到错误，请稍后重试。"
                 st.error(error_msg)
                 st.session_state["messages"].append({
                     "role": "assistant",
                     "content": error_msg,
-                    "references": []
+                    "references": [],
+                    "message_id": None
                 })
 
         st.rerun()

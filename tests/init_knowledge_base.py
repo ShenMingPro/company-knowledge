@@ -6,7 +6,6 @@ import io
 import os
 
 # 设置UTF-8输出
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 # 添加项目根目录到路径
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))

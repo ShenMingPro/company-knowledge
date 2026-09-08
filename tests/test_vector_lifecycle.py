@@ -8,7 +8,6 @@ import io
 import tempfile
 import shutil
 
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from models.database import init_database, get_session, Document, DocumentVersion, User, KnowledgeSpace

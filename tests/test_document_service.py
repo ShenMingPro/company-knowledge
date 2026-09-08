@@ -8,7 +8,6 @@ import tempfile
 import shutil
 
 # 设置stdout编码为UTF-8
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 # 添加项目根目录到路径
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))

@@ -4,6 +4,7 @@
 import streamlit as st
 from services.document_service import DocumentService
 from services.permission_service import PermissionService
+from services.audit_service import AuditService
 from rag.vector_store import VectorStoreService
 from models.database import get_session, KnowledgeSpace
 import os
@@ -121,6 +122,19 @@ def show_document_management_page():
                     with col_yes:
                         if st.button("确认删除", key=f"confirm_yes_{doc['id']}", type="primary"):
                             result = DocumentService.soft_delete_document(doc['id'])
+
+                            # 记录审计
+                            user_id = st.session_state["user"]["id"]
+                            AuditService.record_document_operation(
+                                user_id=user_id,
+                                action_type='document_delete',
+                                document_id=doc['id'],
+                                version_id=doc.get('current_version_id'),
+                                space_id=doc['space_id'],
+                                is_success=result['success'],
+                                error_message=result.get('message') if not result['success'] else None
+                            )
+
                             if result['success']:
                                 st.success(result['message'])
                                 st.session_state[f"confirm_delete_{doc['id']}"] = False
@@ -219,6 +233,18 @@ def show_reindex_document(document_id: int):
             document_name=doc['name']
         )
 
+        # 记录审计
+        user_id = st.session_state["user"]["id"]
+        AuditService.record_document_operation(
+            user_id=user_id,
+            action_type='document_reindex',
+            document_id=document_id,
+            version_id=current_version['id'],
+            space_id=doc['space_id'],
+            is_success=index_result['success'],
+            error_message=index_result.get('message') if not index_result['success'] else None
+        )
+
         if index_result['success']:
             st.success(f"重新索引成功：{index_result['message']}")
             time.sleep(1)
@@ -230,6 +256,23 @@ def show_reindex_document(document_id: int):
 def show_deactivate_document(document_id: int):
     """下架文档"""
     result = DocumentService.deactivate_document(document_id)
+
+    # 记录审计
+    user_id = st.session_state["user"]["id"]
+    detail = DocumentService.get_document_detail(document_id)
+    space_id = detail['document']['space_id'] if detail['success'] else None
+    version_id = detail['document'].get('current_version_id') if detail['success'] else None
+
+    AuditService.record_document_operation(
+        user_id=user_id,
+        action_type='document_deactivate',
+        document_id=document_id,
+        version_id=version_id,
+        space_id=space_id,
+        is_success=result['success'],
+        error_message=result.get('message') if not result['success'] else None
+    )
+
     if result['success']:
         st.success(result['message'])
         time.sleep(1)
@@ -241,6 +284,23 @@ def show_deactivate_document(document_id: int):
 def show_restore_document(document_id: int):
     """恢复文档"""
     result = DocumentService.restore_document(document_id)
+
+    # 记录审计
+    user_id = st.session_state["user"]["id"]
+    detail = DocumentService.get_document_detail(document_id)
+    space_id = detail['document']['space_id'] if detail['success'] else None
+    version_id = result.get('version_id')
+
+    AuditService.record_document_operation(
+        user_id=user_id,
+        action_type='document_restore',
+        document_id=document_id,
+        version_id=version_id,
+        space_id=space_id,
+        is_success=result['success'],
+        error_message=result.get('message') if not result['success'] else None
+    )
+
     if result['success']:
         st.success(result['message'])
         time.sleep(1)
