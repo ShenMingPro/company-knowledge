@@ -569,3 +569,23 @@ class DocumentService:
             return session.query(Document).filter_by(id=document_id).first()
         finally:
             session.close()
+
+    @staticmethod
+    def get_current_version_ids(space_ids: list) -> list:
+        """
+        获取指定知识空间的所有当前版本ID
+        :param space_ids: 知识空间ID列表
+        :return: 当前版本ID列表
+        """
+        session = get_session()
+        try:
+            documents = session.query(Document).filter(
+                Document.space_id.in_(space_ids),
+                Document.is_deleted == False,
+                Document.current_version_id.isnot(None)
+            ).all()
+
+            version_ids = [doc.current_version_id for doc in documents]
+            return version_ids
+        finally:
+            session.close()

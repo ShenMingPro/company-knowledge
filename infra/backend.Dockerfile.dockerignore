@@ -1,0 +1,16 @@
+.git
+.gitignore
+.env
+.env.*
+.idea
+.pytest_cache
+__pycache__
+**/__pycache__
+*.py[cod]
+frontend
+data
+chroma_db
+logs
+tests
+docs
+*.md

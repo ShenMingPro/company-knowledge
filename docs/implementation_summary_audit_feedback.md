@@ -7,15 +7,16 @@
 - **services/audit_service.py** - 审计日志服务
 - **services/feedback_service.py** - 用户反馈服务
 
-### 新增页面文件
-- **pages/audit_logs.py** - 管理员审计日志查看页面
+### 接口与前端
+- **backend/app/routers/audits.py** - 管理员审计日志接口
+- **frontend/src/views/AuditView.vue** - 管理员审计日志页面
 
 ### 新增测试文件
-- **tests/test_interaction_audit.py** - 综合测试（13个测试用例，全部通过）
+- **tests/test_interaction_audit.py** - 综合测试（实施阶段 13 个测试用例全部通过）
 
 ### 修改的现有文件
-- **app.py** - 集成问答持久化、审计和反馈功能
-- **pages/document_management.py** - 添加文档操作审计
+- **backend/app/routers/chat.py** - 集成问答持久化和反馈接口
+- **backend/app/routers/documents.py** - 添加文档操作审计
 - **models/database.py** - 支持 `:memory:` 数据库用于测试
 
 ## 2. 数据流
@@ -41,14 +42,14 @@ AuditService.record_rag_query() / record_document_operation()
     ↓
 保存 AuditLog（JSON格式元数据）
     ↓
-管理员可通过 /audit_logs 页面查看
+管理员可通过审计日志接口和前端管理页面查看
 ```
 
 ### 2.3 用户反馈流程
 ```
-用户点击 👍/👎 → 前端调用 FeedbackService
+用户点击 👍/👎 → 前端调用 PUT /api/chat/messages/{message_id}/feedback
     ↓
-FeedbackService.upsert_feedback()
+路由调用 FeedbackService.upsert_feedback()
     ↓
 权限检查（用户只能反馈自己的消息）
     ↓
@@ -204,10 +205,8 @@ else:
 
 ### 7.3 双层权限检查
 ```python
-# 页面层检查
-if st.session_state.get('role') != 'admin':
-    st.error("仅管理员可访问")
-    return
+# FastAPI 路由层检查
+user: User = Depends(require_roles("admin"))
 
 # 服务层检查
 if user_role != 'admin':
@@ -219,7 +218,7 @@ if user_role != 'admin':
 | 标准 | 状态 | 证据 |
 |------|------|------|
 | 问答记录可在数据库查询 | ✅ | test_record_exchange_creates_session |
-| 每条回答有稳定 message_id | ✅ | app.py 返回 message_id 并存储在 session_state |
+| 每条回答有稳定 message_id | ✅ | 问答接口返回 message_id，前端用于提交反馈 |
 | 反馈重复提交不重复记录 | ✅ | test_update_feedback (upsert模式) |
 | 拒答记录为 is_success=True | ✅ | test_record_rag_query_refusal |
 | 技术错误记录为 is_success=False | ✅ | test_record_rag_query_error |
@@ -253,7 +252,7 @@ if user_role != 'admin':
 
 ## 11. 部署注意事项
 
-1. **首次部署：** 无需运行数据库迁移（表已存在）
+1. **首次部署：** 按 README 初始化数据库 schema 和种子数据；已有 SQLite 数据按迁移脚本导入
 2. **权限验证：** 确保管理员账户 role='admin' 正确设置
 3. **性能监控：** 每次 RAG 查询增加 2 次数据库写入（ChatMessage + AuditLog）
 4. **存储规划：** AuditLog 表会持续增长，建议定期归档或清理历史数据
@@ -271,7 +270,7 @@ if user_role != 'admin':
 - [ ] 查询数据库 Feedback 表，确认 message_id 和 user_id 关联正确
 
 ### 审计日志
-- [ ] 以管理员身份访问 `/audit_logs` 页面，查看审计记录
+- [ ] 以管理员身份访问前端 `/audit` 页面，确认可通过 `GET /api/audit/logs` 查看审计记录
 - [ ] 以普通用户身份访问，确认被拒绝
 - [ ] 执行 RAG 查询、文档上传、文档重索引等操作，验证审计日志生成
 - [ ] 检查审计日志中的 query_summary 是否已脱敏

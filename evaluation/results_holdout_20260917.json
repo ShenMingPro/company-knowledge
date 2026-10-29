@@ -1,0 +1,1526 @@
+[
+  {
+    "id": "holdout_emp_02",
+    "role": "员工",
+    "role_code": "employee",
+    "question": "办公电脑的开机密码至少要多少位？我离开工位时，最迟多久必须锁屏？公司账号是否允许多人共用？",
+    "reference_answer": "办公电脑开机密码至少12位；离开工位应在10分钟内锁屏；公司账号禁止共享。",
+    "key_points": [
+      "开机密码至少12位",
+      "离开工位10分钟内锁屏",
+      "禁止共享账号"
+    ],
+    "source": "12-保密与信息安全管理制度.docx",
+    "system_answer": "根据【参考资料：12-保密与信息安全管理制度.docx】，办公电脑的开机密码至少要12位。\n\n根据【参考资料：12-保密与信息安全管理制度.docx】，离开工位时，最迟必须在10分钟内锁屏（可使用快捷键 Win+L）。\n\n根据【参考资料：12-保密与信息安全管理制度.docx】，公司账号禁止共享，即不允许多人共用。",
+    "rag_meta": {
+      "has_answer": true,
+      "retrieved_count": 10,
+      "valid_count": 6,
+      "reference_count": 4,
+      "total_time_ms": 5691,
+      "refusal_reason": null,
+      "retrieval_mode": "hybrid"
+    },
+    "model_metadata": {
+      "chat_model_name": "qwen3-max",
+      "chat_model_temperature": 0.0,
+      "chat_model_top_p": 1.0,
+      "judge_model_temperature": 0.0,
+      "judge_model_top_p": 1.0,
+      "timestamp": "2026-09-17T17:38:20.421091",
+      "prompt_modified": "2026-09-14T09:55:32.324503"
+    },
+    "verdict": "correct",
+    "score": 1.0,
+    "reason": "覆盖 3/3 个要点 (100%)",
+    "key_points_result": [
+      {
+        "key_point": "开机密码至少12位",
+        "status": "covered",
+        "evidence": "办公电脑的开机密码至少要12位。"
+      },
+      {
+        "key_point": "离开工位10分钟内锁屏",
+        "status": "covered",
+        "evidence": "离开工位时，最迟必须在10分钟内锁屏（可使用快捷键 Win+L）。"
+      },
+      {
+        "key_point": "禁止共享账号",
+        "status": "covered",
+        "evidence": "公司账号禁止共享，即不允许多人共用。"
+      }
+    ],
+    "coverage_stats": {
+      "total": 3,
+      "covered": 3,
+      "missing": 0,
+      "contradicted": 0,
+      "coverage_rate": 1.0
+    },
+    "judge_status": "success"
+  },
+  {
+    "id": "holdout_emp_01",
+    "role": "员工",
+    "role_code": "employee",
+    "question": "我要采购一台单价3500元的固定资产，应该采用什么采购方式、由谁审批？如果合同金额达到12万元，还要增加什么流程？",
+    "reference_answer": "单价3500元属于单价不低于2000元的固定资产，应进行三家比价，由VP和采购部审批；合同金额超过10万元还需法务审阅。",
+    "key_points": [
+      "单价3500元属于固定资产采购范围",
+      "采购方式为三家比价",
+      "审批人为VP和采购部",
+      "12万元合同还需法务审阅"
+    ],
+    "source": "11-采购管理制度.docx",
+    "system_answer": "根据您的问题，分两部分回答如下：\n\n**一、采购单价3500元的固定资产应采用的采购方式及审批人**\n\n该资产属于“单价 ≥ 2,000 元”的固定资产，根据【参考资料：11-采购管理制度.docx】中关于采购类型的规定，应采用“三家比价”方式，并由“VP + 采购部”审批。\n\n此外，根据【参考资料：11-采购管理制度.docx】中“寻源比价”条款，采购部需至少获取三家有效报价（框架供应商除外），并形成比价表。\n\n**二、若合同金额达到12万元，是否需增加流程**\n\n参考资料中未明确说明“合同总金额”对固定资产采购方式或审批层级的影响。现有规定仅以“单价”作为固定资产采购方式的判断标准（见【参考资料：11-采购管理制度.docx】），而关于支出金额的审批权限（如5万元、50万元阈值）出自【参考资料：02-组织架构与部门职责.docx】，但该文件描述的是“单笔支出”的通用审批权限，未明确其是否适用于固定资产采购场景，也未说明是否叠加于采购制度中的“VP + 采购部”审批要求之上。\n\n因此，**根据现有资料无法完全确认**合同金额达到12万元时是否需额外增加审批流程或调整采购方式。建议结合财务或采购部门进一步核实是否需同时适用支出审批权限规则。",
+    "rag_meta": {
+      "has_answer": true,
+      "retrieved_count": 10,
+      "valid_count": 6,
+      "reference_count": 3,
+      "total_time_ms": 9342,
+      "refusal_reason": null,
+      "retrieval_mode": "hybrid"
+    },
+    "model_metadata": {
+      "chat_model_name": "qwen3-max",
+      "chat_model_temperature": 0.0,
+      "chat_model_top_p": 1.0,
+      "judge_model_temperature": 0.0,
+      "judge_model_top_p": 1.0,
+      "timestamp": "2026-09-17T17:38:20.421091",
+      "prompt_modified": "2026-09-14T09:55:32.324503"
+    },
+    "verdict": "partial",
+    "score": 0.5,
+    "reason": "覆盖 3/4 个要点 (75%)",
+    "key_points_result": [
+      {
+        "key_point": "单价3500元属于固定资产采购范围",
+        "status": "covered",
+        "evidence": "该资产属于“单价 ≥ 2,000 元”的固定资产"
+      },
+      {
+        "key_point": "采购方式为三家比价",
+        "status": "covered",
+        "evidence": "应采用“三家比价”方式"
+      },
+      {
+        "key_point": "审批人为VP和采购部",
+        "status": "covered",
+        "evidence": "并由“VP + 采购部”审批"
+      },
+      {
+        "key_point": "12万元合同还需法务审阅",
+        "status": "missing",
+        "evidence": ""
+      }
+    ],
+    "coverage_stats": {
+      "total": 4,
+      "covered": 3,
+      "missing": 1,
+      "contradicted": 0,
+      "coverage_rate": 0.75
+    },
+    "judge_status": "success"
+  },
+  {
+    "id": "holdout_emp_04",
+    "role": "员工",
+    "role_code": "employee",
+    "question": "我内部转岗后，设备资产台账应在多久内完成变更？如果维修费已经超过设备净值的一半，应该怎么处理？",
+    "reference_answer": "内部转岗后5个工作日内变更资产台账归属；维修费用超过设备净值50%时，直接申请报废更新。",
+    "key_points": [
+      "转岗后5个工作日内变更资产台账",
+      "维修费超过设备净值50%时申请报废更新"
+    ],
+    "source": "13-办公设备与固定资产管理制度.docx",
+    "system_answer": "根据【参考资料：13-办公设备与固定资产管理制度.docx】，内部转岗后，设备资产台账应在5个工作日内完成变更归属。\n\n根据【参考资料：13-办公设备与固定资产管理制度.docx】，若维修费用超过设备净值的50%，应直接申请报废更新。",
+    "rag_meta": {
+      "has_answer": true,
+      "retrieved_count": 10,
+      "valid_count": 6,
+      "reference_count": 2,
+      "total_time_ms": 4704,
+      "refusal_reason": null,
+      "retrieval_mode": "hybrid"
+    },
+    "model_metadata": {
+      "chat_model_name": "qwen3-max",
+      "chat_model_temperature": 0.0,
+      "chat_model_top_p": 1.0,
+      "judge_model_temperature": 0.0,
+      "judge_model_top_p": 1.0,
+      "timestamp": "2026-09-17T17:38:20.421091",
+      "prompt_modified": "2026-09-14T09:55:32.324503"
+    },
+    "verdict": "correct",
+    "score": 1.0,
+    "reason": "覆盖 2/2 个要点 (100%)",
+    "key_points_result": [
+      {
+        "key_point": "转岗后5个工作日内变更资产台账",
+        "status": "covered",
+        "evidence": "内部转岗后，设备资产台账应在5个工作日内完成变更归属。"
+      },
+      {
+        "key_point": "维修费超过设备净值50%时申请报废更新",
+        "status": "covered",
+        "evidence": "若维修费用超过设备净值的50%，应直接申请报废更新。"
+      }
+    ],
+    "coverage_stats": {
+      "total": 2,
+      "covered": 2,
+      "missing": 0,
+      "contradicted": 0,
+      "coverage_rate": 1.0
+    },
+    "judge_status": "success"
+  },
+  {
+    "id": "holdout_emp_03",
+    "role": "员工",
+    "role_code": "employee",
+    "question": "员工发现可能的数据泄露事件后，最晚多久报告？如果被定为P0，要求多久内遏制，并在多久内完成复盘报告？",
+    "reference_answer": "发现安全事件后应在30分钟内报告；P0事件应在24小时内遏制，并在5个工作日内输出RCA复盘报告。",
+    "key_points": [
+      "发现后30分钟内报告",
+      "P0事件24小时内遏制",
+      "5个工作日内输出RCA复盘报告"
+    ],
+    "source": "12-保密与信息安全管理制度.docx",
+    "system_answer": "根据【参考资料：12-保密与信息安全管理制度.docx】，员工发现可能的数据泄露事件后，须在**30分钟内**报告（通过 security@yunzhi-tech.example.com 或 400 转安全值班）。\n\n若事件被定为P0级，根据同一文件，要求在**24小时内完成遏制**（动作包括隔离受影响系统、保全证据、溯源修复）。\n\n关于复盘报告的时限，存在两处相关描述：\n- 【参考资料：13-系统部署与运维指南.docx】指出，P0级重大故障需在**24小时内出具复盘报告**；\n- 【参考资料：12-保密与信息安全管理制度.docx】则规定复盘阶段需在**5个工作日内**输出RCA报告并落实改进项。\n\n由于两份资料对复盘报告时限的规定不一致，且均适用于P0级事件（前者侧重系统故障，后者侧重信息安全事件），而用户问题特指“数据泄露事件”（属信息安全范畴），应优先适用《12-保密与信息安全管理制度.docx》。但该文件未明确“复盘报告”是否等同于“RCA报告”，也未说明24小时与5个工作日之间的关系。\n\n因此，基于现有资料：\n- **报告时限**：30分钟内（明确，来源：【参考资料：12-保密与信息安全管理制度.docx】）；\n- **P0遏制时限**：24小时内（明确，来源：【参考资料：12-保密与信息安全管理制度.docx】）；\n- **复盘报告时限**：根据【参考资料：13-系统部署与运维指南.docx】为24小时内，根据【参考资料：12-保密与信息安全管理制度.docx】为5个工作日内。因资料冲突且未明确适用优先级，**无法完全确认统一的复盘报告时限**。",
+    "rag_meta": {
+      "has_answer": true,
+      "retrieved_count": 10,
+      "valid_count": 6,
+      "reference_count": 5,
+      "total_time_ms": 11239,
+      "refusal_reason": null,
+      "retrieval_mode": "hybrid"
+    },
+    "model_metadata": {
+      "chat_model_name": "qwen3-max",
+      "chat_model_temperature": 0.0,
+      "chat_model_top_p": 1.0,
+      "judge_model_temperature": 0.0,
+      "judge_model_top_p": 1.0,
+      "timestamp": "2026-09-17T17:38:20.421091",
+      "prompt_modified": "2026-09-14T09:55:32.324503"
+    },
+    "verdict": "correct",
+    "score": 1.0,
+    "reason": "覆盖 3/3 个要点 (100%)",
+    "key_points_result": [
+      {
+        "key_point": "发现后30分钟内报告",
+        "status": "covered",
+        "evidence": "员工发现可能的数据泄露事件后，须在**30分钟内**报告（通过 security@yunzhi-tech.example.com 或 400 转安全值班）。"
+      },
+      {
+        "key_point": "P0事件24小时内遏制",
+        "status": "covered",
+        "evidence": "若事件被定为P0级，根据同一文件，要求在**24小时内完成遏制**（动作包括隔离受影响系统、保全证据、溯源修复）。"
+      },
+      {
+        "key_point": "5个工作日内输出RCA复盘报告",
+        "status": "covered",
+        "evidence": "【参考资料：12-保密与信息安全管理制度.docx】则规定复盘阶段需在**5个工作日内**输出RCA报告并落实改进项。"
+      }
+    ],
+    "coverage_stats": {
+      "total": 3,
+      "covered": 3,
+      "missing": 0,
+      "contradicted": 0,
+      "coverage_rate": 1.0
+    },
+    "judge_status": "success"
+  },
+  {
+    "id": "holdout_emp_05",
+    "role": "员工",
+    "role_code": "employee",
+    "question": "会议开始后一直没人签到，多久会自动释放会议室？一个月爽约3次会受到什么限制？",
+    "reference_answer": "会议开始10分钟未签到会自动释放会议室；每月爽约3次将冻结会议室预约权限7天。",
+    "key_points": [
+      "开始10分钟未签到自动释放会议室",
+      "每月爽约3次冻结预约权限",
+      "冻结期限为7天"
+    ],
+    "source": "14-行政管理与会议制度.docx",
+    "system_answer": "根据【参考资料：14-行政管理与会议制度.docx】，会议开始后若一直无人签到，将在10分钟后自动释放会议室。此外，同一用户若一个月内爽约3次，将被冻结预约权限7天。",
+    "rag_meta": {
+      "has_answer": true,
+      "retrieved_count": 10,
+      "valid_count": 6,
+      "reference_count": 3,
+      "total_time_ms": 3879,
+      "refusal_reason": null,
+      "retrieval_mode": "hybrid"
+    },
+    "model_metadata": {
+      "chat_model_name": "qwen3-max",
+      "chat_model_temperature": 0.0,
+      "chat_model_top_p": 1.0,
+      "judge_model_temperature": 0.0,
+      "judge_model_top_p": 1.0,
+      "timestamp": "2026-09-17T17:38:20.421091",
+      "prompt_modified": "2026-09-14T09:55:32.324503"
+    },
+    "verdict": "correct",
+    "score": 1.0,
+    "reason": "覆盖 3/3 个要点 (100%)",
+    "key_points_result": [
+      {
+        "key_point": "开始10分钟未签到自动释放会议室",
+        "status": "covered",
+        "evidence": "会议开始后若一直无人签到，将在10分钟后自动释放会议室"
+      },
+      {
+        "key_point": "每月爽约3次冻结预约权限",
+        "status": "covered",
+        "evidence": "同一用户若一个月内爽约3次，将被冻结预约权限7天"
+      },
+      {
+        "key_point": "冻结期限为7天",
+        "status": "covered",
+        "evidence": "同一用户若一个月内爽约3次，将被冻结预约权限7天"
+      }
+    ],
+    "coverage_stats": {
+      "total": 3,
+      "covered": 3,
+      "missing": 0,
+      "contradicted": 0,
+      "coverage_rate": 1.0
+    },
+    "judge_status": "success"
+  },
+  {
+    "id": "holdout_emp_07",
+    "role": "员工",
+    "role_code": "employee",
+    "question": "员工生育和直系亲属去世时，公司分别提供哪些关怀？",
+    "reference_answer": "员工生育可获得1000元礼金和婴儿礼包；直系亲属去世可获得2000元慰问金及3天带薪丧假。",
+    "key_points": [
+      "生育关怀包含1000元礼金",
+      "生育关怀包含婴儿礼包",
+      "直系亲属去世提供2000元慰问金",
+      "直系亲属去世提供3天带薪丧假"
+    ],
+    "source": "15-企业文化与员工活动.docx",
+    "system_answer": "根据【参考资料：15-企业文化与员工活动.docx】中的“员工关怀”表格：\n\n- 员工生育时，公司提供 **1,000 元贺仪 + 婴儿礼盒**。  \n- 员工直系亲属去世时，公司提供 **慰问金 2,000 元 + 3 天事假豁免**。",
+    "rag_meta": {
+      "has_answer": true,
+      "retrieved_count": 10,
+      "valid_count": 6,
+      "reference_count": 3,
+      "total_time_ms": 4581,
+      "refusal_reason": null,
+      "retrieval_mode": "hybrid"
+    },
+    "model_metadata": {
+      "chat_model_name": "qwen3-max",
+      "chat_model_temperature": 0.0,
+      "chat_model_top_p": 1.0,
+      "judge_model_temperature": 0.0,
+      "judge_model_top_p": 1.0,
+      "timestamp": "2026-09-17T17:38:20.421091",
+      "prompt_modified": "2026-09-14T09:55:32.324503"
+    },
+    "verdict": "correct",
+    "score": 1.0,
+    "reason": "覆盖 4/4 个要点 (100%)",
+    "key_points_result": [
+      {
+        "key_point": "生育关怀包含1000元礼金",
+        "status": "covered",
+        "evidence": "员工生育时，公司提供 **1,000 元贺仪 + 婴儿礼盒**。"
+      },
+      {
+        "key_point": "生育关怀包含婴儿礼包",
+        "status": "covered",
+        "evidence": "员工生育时，公司提供 **1,000 元贺仪 + 婴儿礼盒**。"
+      },
+      {
+        "key_point": "直系亲属去世提供2000元慰问金",
+        "status": "covered",
+        "evidence": "员工直系亲属去世时，公司提供 **慰问金 2,000 元 + 3 天事假豁免**。"
+      },
+      {
+        "key_point": "直系亲属去世提供3天带薪丧假",
+        "status": "covered",
+        "evidence": "员工直系亲属去世时，公司提供 **慰问金 2,000 元 + 3 天事假豁免**。"
+      }
+    ],
+    "coverage_stats": {
+      "total": 4,
+      "covered": 4,
+      "missing": 0,
+      "contradicted": 0,
+      "coverage_rate": 1.0
+    },
+    "judge_status": "success"
+  },
+  {
+    "id": "holdout_emp_08",
+    "role": "员工",
+    "role_code": "employee",
+    "question": "小会议室和中型会议室分别适合多少人，最长能预约多久？",
+    "reference_answer": "小会议室适合4至6人，最长预约2小时；中型会议室适合10至15人，最长预约3小时。",
+    "key_points": [
+      "小会议室容量为4至6人",
+      "小会议室最长预约2小时",
+      "中型会议室容量为10至15人",
+      "中型会议室最长预约3小时"
+    ],
+    "source": "14-行政管理与会议制度.docx",
+    "system_answer": "根据【参考资料：14-行政管理与会议制度.docx】，小会议室适合4~6人，最长可预约2小时；中型会议室适合10~15人，最长可预约3小时。",
+    "rag_meta": {
+      "has_answer": true,
+      "retrieved_count": 10,
+      "valid_count": 6,
+      "reference_count": 4,
+      "total_time_ms": 3853,
+      "refusal_reason": null,
+      "retrieval_mode": "hybrid"
+    },
+    "model_metadata": {
+      "chat_model_name": "qwen3-max",
+      "chat_model_temperature": 0.0,
+      "chat_model_top_p": 1.0,
+      "judge_model_temperature": 0.0,
+      "judge_model_top_p": 1.0,
+      "timestamp": "2026-09-17T17:38:20.421091",
+      "prompt_modified": "2026-09-14T09:55:32.324503"
+    },
+    "verdict": "correct",
+    "score": 1.0,
+    "reason": "覆盖 4/4 个要点 (100%)",
+    "key_points_result": [
+      {
+        "key_point": "小会议室容量为4至6人",
+        "status": "covered",
+        "evidence": "小会议室适合4~6人"
+      },
+      {
+        "key_point": "小会议室最长预约2小时",
+        "status": "covered",
+        "evidence": "最长可预约2小时"
+      },
+      {
+        "key_point": "中型会议室容量为10至15人",
+        "status": "covered",
+        "evidence": "中型会议室适合10~15人"
+      },
+      {
+        "key_point": "中型会议室最长预约3小时",
+        "status": "covered",
+        "evidence": "最长可预约3小时"
+      }
+    ],
+    "coverage_stats": {
+      "total": 4,
+      "covered": 4,
+      "missing": 0,
+      "contradicted": 0,
+      "coverage_rate": 1.0
+    },
+    "judge_status": "success"
+  },
+  {
+    "id": "holdout_emp_06",
+    "role": "员工",
+    "role_code": "employee",
+    "question": "我想发起一个新社团，最少需要几名成员、还要办什么手续？社团满足什么条件后每年可以获得多少经费？",
+    "reference_answer": "新社团由5名以上成员发起，需由发起人申请并到行政部备案；达到10人以上、提交年度计划后，每年可获得5000元经费。",
+    "key_points": [
+      "新社团至少5名成员发起",
+      "发起人提出申请并由行政部备案",
+      "获得经费需达到10人以上并提交年度计划",
+      "年度经费为5000元"
+    ],
+    "source": "15-企业文化与员工活动.docx",
+    "system_answer": "根据【参考资料：15-企业文化与员工活动.docx】，发起新社团需满足以下条件和流程：\n\n- **最少成员人数**：需要 **5 名以上成员**（含发起人）；\n- **所需手续**：由发起人提交申请，并向行政部备案。\n\n关于社团经费，根据同一份资料【参考资料：15-企业文化与员工活动.docx】，社团需满足 **10 人以上成团并提交年度计划**，方可获得 **年度经费 5,000 元/团**。\n\n综上：\n- 发起阶段最低只需 5 名成员并完成申请备案；\n- 要获得年度经费，则须达到 10 人以上并提交年度计划。",
+    "rag_meta": {
+      "has_answer": true,
+      "retrieved_count": 10,
+      "valid_count": 6,
+      "reference_count": 2,
+      "total_time_ms": 6988,
+      "refusal_reason": null,
+      "retrieval_mode": "hybrid"
+    },
+    "model_metadata": {
+      "chat_model_name": "qwen3-max",
+      "chat_model_temperature": 0.0,
+      "chat_model_top_p": 1.0,
+      "judge_model_temperature": 0.0,
+      "judge_model_top_p": 1.0,
+      "timestamp": "2026-09-17T17:38:20.421091",
+      "prompt_modified": "2026-09-14T09:55:32.324503"
+    },
+    "verdict": "correct",
+    "score": 1.0,
+    "reason": "覆盖 4/4 个要点 (100%)",
+    "key_points_result": [
+      {
+        "key_point": "新社团至少5名成员发起",
+        "status": "covered",
+        "evidence": "需要 **5 名以上成员**（含发起人）"
+      },
+      {
+        "key_point": "发起人提出申请并由行政部备案",
+        "status": "covered",
+        "evidence": "由发起人提交申请，并向行政部备案"
+      },
+      {
+        "key_point": "获得经费需达到10人以上并提交年度计划",
+        "status": "covered",
+        "evidence": "社团需满足 **10 人以上成团并提交年度计划**"
+      },
+      {
+        "key_point": "年度经费为5000元",
+        "status": "covered",
+        "evidence": "方可获得 **年度经费 5,000 元/团**"
+      }
+    ],
+    "coverage_stats": {
+      "total": 4,
+      "covered": 4,
+      "missing": 0,
+      "contradicted": 0,
+      "coverage_rate": 1.0
+    },
+    "judge_status": "success"
+  },
+  {
+    "id": "holdout_cs_02",
+    "role": "客服",
+    "role_code": "service",
+    "question": "客户投诉后拟补偿8000元现金，最低由谁审批？如果现金补偿超过1万元，谁有最终权限？",
+    "reference_answer": "8000元现金补偿可由部门经理审批；超过1万元的现金补偿需要总监及以上审批，部门经理只能报批。",
+    "key_points": [
+      "8000元现金补偿由部门经理审批",
+      "超过1万元由总监及以上审批",
+      "部门经理对超过1万元的补偿只能报批"
+    ],
+    "source": "10-客户投诉处理流程.docx",
+    "system_answer": "根据【参考资料：10-客户投诉处理流程.docx】中的“补偿权限表”：\n\n- 对于现金补偿 ≤ 10,000 元的情况，组长“不可”审批，部门经理“可”审批，总监及以上人员也可审批。因此，8000元现金补偿的最低审批人为**部门经理**。\n\n- 对于现金补偿 > 10,000 元的情况，组长“不可”审批，部门经理需“报批”，仅总监及以上人员有“可”审批权限。因此，现金补偿超过1万元时，**总监及以上人员**拥有最终权限。\n\n综上：\n- 8000元现金补偿最低由**部门经理**审批；\n- 超过1万元现金补偿的最终权限人为**总监及以上人员**。",
+    "rag_meta": {
+      "has_answer": true,
+      "retrieved_count": 10,
+      "valid_count": 6,
+      "reference_count": 4,
+      "total_time_ms": 6418,
+      "refusal_reason": null,
+      "retrieval_mode": "hybrid"
+    },
+    "model_metadata": {
+      "chat_model_name": "qwen3-max",
+      "chat_model_temperature": 0.0,
+      "chat_model_top_p": 1.0,
+      "judge_model_temperature": 0.0,
+      "judge_model_top_p": 1.0,
+      "timestamp": "2026-09-17T17:38:20.421091",
+      "prompt_modified": "2026-09-14T09:55:32.324503"
+    },
+    "verdict": "correct",
+    "score": 1.0,
+    "reason": "覆盖 3/3 个要点 (100%)",
+    "key_points_result": [
+      {
+        "key_point": "8000元现金补偿由部门经理审批",
+        "status": "covered",
+        "evidence": "8000元现金补偿的最低审批人为**部门经理**。"
+      },
+      {
+        "key_point": "超过1万元由总监及以上审批",
+        "status": "covered",
+        "evidence": "现金补偿超过1万元时，**总监及以上人员**拥有最终权限。"
+      },
+      {
+        "key_point": "部门经理对超过1万元的补偿只能报批",
+        "status": "covered",
+        "evidence": "对于现金补偿 > 10,000 元的情况，组长“不可”审批，部门经理需“报批”，仅总监及以上人员有“可”审批权限。"
+      }
+    ],
+    "coverage_stats": {
+      "total": 3,
+      "covered": 3,
+      "missing": 0,
+      "contradicted": 0,
+      "coverage_rate": 1.0
+    },
+    "judge_status": "success"
+  },
+  {
+    "id": "holdout_cs_01",
+    "role": "客服",
+    "role_code": "service",
+    "question": "客户扬言要向媒体曝光并组织集体投诉，客服应在多久内上报给哪些团队？对外沟通有什么限制？",
+    "reference_answer": "应在2小时内上报值班经理和公关组，由公司统一口径对外；员工不得私自以个人名义接触媒体，也不得私下承诺补偿。",
+    "key_points": [
+      "2小时内上报",
+      "上报值班经理和公关组",
+      "由公司统一口径对外",
+      "员工不得私自接触媒体或承诺补偿"
+    ],
+    "source": "10-客户投诉处理流程.docx",
+    "system_answer": "根据【参考资料：10-客户投诉处理流程.docx】，当客户扬言要向媒体曝光并组织集体投诉时，客服应在2小时内上报给值班经理与公关组。\n\n此外，根据【参考资料：02-组织架构与部门职责.docx】，对于重大客诉、安全事件、舆情，需在30分钟内上报部门负责人与公关组。虽然该条未明确限定“扬言媒体曝光/集体投诉”是否属于“重大客诉”，但结合上下文可视为适用情形之一。\n\n关于对外沟通限制，根据【参考资料：10-客户投诉处理流程.docx】，禁止员工私自以个人名义与媒体接触，也禁止私下向客户承诺任何补偿。\n\n综上，上报时限存在两个规定：  \n- 一般情形下为2小时内上报值班经理与公关组（【参考资料：10-客户投诉处理流程.docx】）；  \n- 若视为重大客诉或舆情，则需30分钟内上报部门负责人与公关组（【参考资料：02-组织架构与部门职责.docx】）。\n\n对外沟通方面，明确禁止员工私自接触媒体或私下承诺补偿（【参考资料：10-客户投诉处理流程.docx】）。",
+    "rag_meta": {
+      "has_answer": true,
+      "retrieved_count": 10,
+      "valid_count": 6,
+      "reference_count": 3,
+      "total_time_ms": 10240,
+      "refusal_reason": null,
+      "retrieval_mode": "hybrid"
+    },
+    "model_metadata": {
+      "chat_model_name": "qwen3-max",
+      "chat_model_temperature": 0.0,
+      "chat_model_top_p": 1.0,
+      "judge_model_temperature": 0.0,
+      "judge_model_top_p": 1.0,
+      "timestamp": "2026-09-17T17:38:20.421091",
+      "prompt_modified": "2026-09-14T09:55:32.324503"
+    },
+    "verdict": "partial",
+    "score": 0.5,
+    "reason": "覆盖 3/4 个要点 (75%)",
+    "key_points_result": [
+      {
+        "key_point": "2小时内上报",
+        "status": "covered",
+        "evidence": "客服应在2小时内上报给值班经理与公关组。"
+      },
+      {
+        "key_point": "上报值班经理和公关组",
+        "status": "covered",
+        "evidence": "客服应在2小时内上报给值班经理与公关组。"
+      },
+      {
+        "key_point": "由公司统一口径对外",
+        "status": "missing",
+        "evidence": ""
+      },
+      {
+        "key_point": "员工不得私自接触媒体或承诺补偿",
+        "status": "covered",
+        "evidence": "禁止员工私自以个人名义与媒体接触，也禁止私下向客户承诺任何补偿。"
+      }
+    ],
+    "coverage_stats": {
+      "total": 4,
+      "covered": 3,
+      "missing": 1,
+      "contradicted": 0,
+      "coverage_rate": 0.75
+    },
+    "judge_status": "success"
+  },
+  {
+    "id": "holdout_cs_03",
+    "role": "客服",
+    "role_code": "service",
+    "question": "私有化项目做性能和可用性验收时，对1000并发登录、消息延迟P99和试运行可用率分别有什么要求？",
+    "reference_answer": "应通过1000并发登录测试，消息延迟P99不超过500毫秒；试运行期间可用率不低于99.9%。",
+    "key_points": [
+      "通过1000并发登录测试",
+      "消息延迟P99不超过500毫秒",
+      "试运行可用率不低于99.9%"
+    ],
+    "source": "12-实施交付与验收规范.docx",
+    "system_answer": "根据【参考资料：12-实施交付与验收规范.docx】，私有化项目在性能和可用性验收时的具体要求如下：\n\n- **1000并发登录**：作为性能验收的测试场景之一，需满足合同约定的规模要求；\n- **消息延迟P99**：需 ≤ 500ms（按合同规模）；\n- **试运行可用率**：需 ≥ 99.9%。\n\n上述三项指标均明确列于该文档的“性能验收”和“可用性”条目中。",
+    "rag_meta": {
+      "has_answer": true,
+      "retrieved_count": 10,
+      "valid_count": 6,
+      "reference_count": 5,
+      "total_time_ms": 8859,
+      "refusal_reason": null,
+      "retrieval_mode": "hybrid"
+    },
+    "model_metadata": {
+      "chat_model_name": "qwen3-max",
+      "chat_model_temperature": 0.0,
+      "chat_model_top_p": 1.0,
+      "judge_model_temperature": 0.0,
+      "judge_model_top_p": 1.0,
+      "timestamp": "2026-09-17T17:38:20.421091",
+      "prompt_modified": "2026-09-14T09:55:32.324503"
+    },
+    "verdict": "correct",
+    "score": 1.0,
+    "reason": "覆盖 3/3 个要点 (100%)",
+    "key_points_result": [
+      {
+        "key_point": "通过1000并发登录测试",
+        "status": "covered",
+        "evidence": "- **1000并发登录**：作为性能验收的测试场景之一，需满足合同约定的规模要求；"
+      },
+      {
+        "key_point": "消息延迟P99不超过500毫秒",
+        "status": "covered",
+        "evidence": "- **消息延迟P99**：需 ≤ 500ms（按合同规模）；"
+      },
+      {
+        "key_point": "试运行可用率不低于99.9%",
+        "status": "covered",
+        "evidence": "- **试运行可用率**：需 ≥ 99.9%。"
+      }
+    ],
+    "coverage_stats": {
+      "total": 3,
+      "covered": 3,
+      "missing": 0,
+      "contradicted": 0,
+      "coverage_rate": 1.0
+    },
+    "judge_status": "success"
+  },
+  {
+    "id": "holdout_cs_04",
+    "role": "客服",
+    "role_code": "service",
+    "question": "客户对项目验收项提出异议后，项目经理应在多久内处理？验收最多能搁置多久，超期且没有有效异议会怎样？",
+    "reference_answer": "项目经理应在3个工作日内组织专题会澄清；验收最长搁置90天，超期未验收且无有效异议时视为默认验收通过。",
+    "key_points": [
+      "3个工作日内组织专题会澄清",
+      "最长搁置90天",
+      "超期且无有效异议视为默认验收通过"
+    ],
+    "source": "12-实施交付与验收规范.docx",
+    "system_answer": "根据【参考资料：12-实施交付与验收规范.docx】，客户对项目验收项提出异议后，项目经理应在3个工作日内组织专题会澄清。\n\n根据同一文件，验收最长搁置期为90天；若超期未验收且无有效异议，则视为默认验收通过（依据合同条款约定）。",
+    "rag_meta": {
+      "has_answer": true,
+      "retrieved_count": 10,
+      "valid_count": 6,
+      "reference_count": 2,
+      "total_time_ms": 4445,
+      "refusal_reason": null,
+      "retrieval_mode": "hybrid"
+    },
+    "model_metadata": {
+      "chat_model_name": "qwen3-max",
+      "chat_model_temperature": 0.0,
+      "chat_model_top_p": 1.0,
+      "judge_model_temperature": 0.0,
+      "judge_model_top_p": 1.0,
+      "timestamp": "2026-09-17T17:38:20.421091",
+      "prompt_modified": "2026-09-14T09:55:32.324503"
+    },
+    "verdict": "correct",
+    "score": 1.0,
+    "reason": "覆盖 3/3 个要点 (100%)",
+    "key_points_result": [
+      {
+        "key_point": "3个工作日内组织专题会澄清",
+        "status": "covered",
+        "evidence": "客户对项目验收项提出异议后，项目经理应在3个工作日内组织专题会澄清。"
+      },
+      {
+        "key_point": "最长搁置90天",
+        "status": "covered",
+        "evidence": "验收最长搁置期为90天"
+      },
+      {
+        "key_point": "超期且无有效异议视为默认验收通过",
+        "status": "covered",
+        "evidence": "若超期未验收且无有效异议，则视为默认验收通过（依据合同条款约定）。"
+      }
+    ],
+    "coverage_stats": {
+      "total": 3,
+      "covered": 3,
+      "missing": 0,
+      "contradicted": 0,
+      "coverage_rate": 1.0
+    },
+    "judge_status": "success"
+  },
+  {
+    "id": "holdout_cs_05",
+    "role": "客服",
+    "role_code": "service",
+    "question": "客户管理员参加YCA认证需要考多少分才算通过？证书有效期多久，到期后如何续证？",
+    "reference_answer": "YCA初级认证笔试达到80分合格；认证有效期2年，到期后可免费复训换证。",
+    "key_points": [
+      "YCA笔试80分合格",
+      "认证有效期2年",
+      "到期可免费复训换证"
+    ],
+    "source": "13-培训服务说明.docx",
+    "system_answer": "客户管理员参加YCA认证需要笔试达到80分才算通过，根据【参考资料：13-培训服务说明.docx】。  \n该认证证书有效期为2年，到期后可免费复训换证，根据【参考资料：13-培训服务说明.docx】。",
+    "rag_meta": {
+      "has_answer": true,
+      "retrieved_count": 10,
+      "valid_count": 6,
+      "reference_count": 1,
+      "total_time_ms": 3744,
+      "refusal_reason": null,
+      "retrieval_mode": "hybrid"
+    },
+    "model_metadata": {
+      "chat_model_name": "qwen3-max",
+      "chat_model_temperature": 0.0,
+      "chat_model_top_p": 1.0,
+      "judge_model_temperature": 0.0,
+      "judge_model_top_p": 1.0,
+      "timestamp": "2026-09-17T17:38:20.421091",
+      "prompt_modified": "2026-09-14T09:55:32.324503"
+    },
+    "verdict": "correct",
+    "score": 1.0,
+    "reason": "覆盖 3/3 个要点 (100%)",
+    "key_points_result": [
+      {
+        "key_point": "YCA笔试80分合格",
+        "status": "covered",
+        "evidence": "客户管理员参加YCA认证需要笔试达到80分才算通过"
+      },
+      {
+        "key_point": "认证有效期2年",
+        "status": "covered",
+        "evidence": "该认证证书有效期为2年"
+      },
+      {
+        "key_point": "到期可免费复训换证",
+        "status": "covered",
+        "evidence": "到期后可免费复训换证"
+      }
+    ],
+    "coverage_stats": {
+      "total": 3,
+      "covered": 3,
+      "missing": 0,
+      "contradicted": 0,
+      "coverage_rate": 1.0
+    },
+    "judge_status": "success"
+  },
+  {
+    "id": "holdout_cs_06",
+    "role": "客服",
+    "role_code": "service",
+    "question": "一次P1故障影响了150人，是否必须复盘，报告最晚什么时候完成？同类问题重复出现两次以上后如何处理？",
+    "reference_answer": "P1故障影响超过100人必须复盘，报告应在恢复后5个工作日内完成；同类问题重复发生2次以上会自动升级至服务群季度会议督办。",
+    "key_points": [
+      "P1影响150人属于必须复盘范围",
+      "恢复后5个工作日内完成报告",
+      "同类问题重复2次以上升级至服务群季度会议督办"
+    ],
+    "source": "14-服务事件复盘规范.docx",
+    "system_answer": "根据【参考资料：14-服务事件复盘规范.docx】，P1 故障且影响 > 100 人属于“必做”复盘的情形，因此本次影响150人的P1故障必须进行复盘。复盘报告的最晚完成时限为故障恢复后5个工作日内。\n\n关于同类问题重复出现两次以上的处理方式，根据【参考资料：14-服务事件复盘规范.docx】，同类问题重复发生2次以上的，将自动升级至服务群季度会议督办。",
+    "rag_meta": {
+      "has_answer": true,
+      "retrieved_count": 10,
+      "valid_count": 6,
+      "reference_count": 4,
+      "total_time_ms": 5446,
+      "refusal_reason": null,
+      "retrieval_mode": "hybrid"
+    },
+    "model_metadata": {
+      "chat_model_name": "qwen3-max",
+      "chat_model_temperature": 0.0,
+      "chat_model_top_p": 1.0,
+      "judge_model_temperature": 0.0,
+      "judge_model_top_p": 1.0,
+      "timestamp": "2026-09-17T17:38:20.421091",
+      "prompt_modified": "2026-09-14T09:55:32.324503"
+    },
+    "verdict": "correct",
+    "score": 1.0,
+    "reason": "覆盖 3/3 个要点 (100%)",
+    "key_points_result": [
+      {
+        "key_point": "P1影响150人属于必须复盘范围",
+        "status": "covered",
+        "evidence": "P1 故障且影响 > 100 人属于“必做”复盘的情形，因此本次影响150人的P1故障必须进行复盘。"
+      },
+      {
+        "key_point": "恢复后5个工作日内完成报告",
+        "status": "covered",
+        "evidence": "复盘报告的最晚完成时限为故障恢复后5个工作日内。"
+      },
+      {
+        "key_point": "同类问题重复2次以上升级至服务群季度会议督办",
+        "status": "covered",
+        "evidence": "同类问题重复发生2次以上的，将自动升级至服务群季度会议督办。"
+      }
+    ],
+    "coverage_stats": {
+      "total": 3,
+      "covered": 3,
+      "missing": 0,
+      "contradicted": 0,
+      "coverage_rate": 1.0
+    },
+    "judge_status": "success"
+  },
+  {
+    "id": "holdout_cs_08",
+    "role": "客服",
+    "role_code": "service",
+    "question": "甘肃和青海地区的授权服务商是哪家公司、认证编号是什么？客户怎样核验上门人员资质？",
+    "reference_answer": "甘肃和青海地区授权服务商是兰州兰智软件服务有限公司，认证编号YD-P-2025-006；服务商应佩戴云智认证服务卡，客户可拨打400热线核验服务商和工程师资质。",
+    "key_points": [
+      "服务商为兰州兰智软件服务有限公司",
+      "认证编号为YD-P-2025-006",
+      "上门人员应佩戴云智认证服务卡",
+      "可拨打400热线核验服务商和工程师资质"
+    ],
+    "source": "15-服务网点与联系方式.docx",
+    "system_answer": "甘肃和青海地区的授权服务商是兰州兰智软件服务有限公司，认证编号为YD-P-2025-006（根据【参考资料：15-服务网点与联系方式.docx】）。\n\n客户核验上门人员资质的方式为：确认其佩戴云智认证服务卡，并可拨打400电话核验服务商与工程师资质（根据【参考资料：15-服务网点与联系方式.docx】）。",
+    "rag_meta": {
+      "has_answer": true,
+      "retrieved_count": 10,
+      "valid_count": 6,
+      "reference_count": 1,
+      "total_time_ms": 5438,
+      "refusal_reason": null,
+      "retrieval_mode": "hybrid"
+    },
+    "model_metadata": {
+      "chat_model_name": "qwen3-max",
+      "chat_model_temperature": 0.0,
+      "chat_model_top_p": 1.0,
+      "judge_model_temperature": 0.0,
+      "judge_model_top_p": 1.0,
+      "timestamp": "2026-09-17T17:38:20.421091",
+      "prompt_modified": "2026-09-14T09:55:32.324503"
+    },
+    "verdict": "correct",
+    "score": 1.0,
+    "reason": "覆盖 4/4 个要点 (100%)",
+    "key_points_result": [
+      {
+        "key_point": "服务商为兰州兰智软件服务有限公司",
+        "status": "covered",
+        "evidence": "甘肃和青海地区的授权服务商是兰州兰智软件服务有限公司"
+      },
+      {
+        "key_point": "认证编号为YD-P-2025-006",
+        "status": "covered",
+        "evidence": "认证编号为YD-P-2025-006"
+      },
+      {
+        "key_point": "上门人员应佩戴云智认证服务卡",
+        "status": "covered",
+        "evidence": "确认其佩戴云智认证服务卡"
+      },
+      {
+        "key_point": "可拨打400热线核验服务商和工程师资质",
+        "status": "covered",
+        "evidence": "并可拨打400电话核验服务商与工程师资质"
+      }
+    ],
+    "coverage_stats": {
+      "total": 4,
+      "covered": 4,
+      "missing": 0,
+      "contradicted": 0,
+      "coverage_rate": 1.0
+    },
+    "judge_status": "success"
+  },
+  {
+    "id": "holdout_admin_01",
+    "role": "管理员",
+    "role_code": "admin",
+    "question": "云智科技推荐的“数字工作空间套件”包含哪三款产品？组合采购能享受什么折扣？",
+    "reference_answer": "数字工作空间套件包含云智协同、云智知识库和云智客服，组合采购享8折。",
+    "key_points": [
+      "包含云智协同",
+      "包含云智知识库",
+      "包含云智客服",
+      "组合采购享8折"
+    ],
+    "source": "12-产品线介绍与版本对比.docx",
+    "system_answer": "云智科技推荐的“数字工作空间套件”包含三款产品：协同、知识库和客服。组合采购该套件可享受8折优惠。\n\n根据【参考资料：12-产品线介绍与版本对比.docx】，云智科技围绕“协同、知识、服务、连接”四大场景构建产品矩阵，其中推荐组合为“协同 + 知识库 + 客服 = ‘数字工作空间套件’”，且明确说明“组合采购享 8 折”。",
+    "rag_meta": {
+      "has_answer": true,
+      "retrieved_count": 10,
+      "valid_count": 6,
+      "reference_count": 5,
+      "total_time_ms": 3838,
+      "refusal_reason": null,
+      "retrieval_mode": "hybrid"
+    },
+    "model_metadata": {
+      "chat_model_name": "qwen3-max",
+      "chat_model_temperature": 0.0,
+      "chat_model_top_p": 1.0,
+      "judge_model_temperature": 0.0,
+      "judge_model_top_p": 1.0,
+      "timestamp": "2026-09-17T17:38:20.421091",
+      "prompt_modified": "2026-09-14T09:55:32.324503"
+    },
+    "verdict": "correct",
+    "score": 1.0,
+    "reason": "覆盖 4/4 个要点 (100%)",
+    "key_points_result": [
+      {
+        "key_point": "包含云智协同",
+        "status": "covered",
+        "evidence": "云智科技推荐的“数字工作空间套件”包含三款产品：协同、知识库和客服。"
+      },
+      {
+        "key_point": "包含云智知识库",
+        "status": "covered",
+        "evidence": "云智科技推荐的“数字工作空间套件”包含三款产品：协同、知识库和客服。"
+      },
+      {
+        "key_point": "包含云智客服",
+        "status": "covered",
+        "evidence": "云智科技推荐的“数字工作空间套件”包含三款产品：协同、知识库和客服。"
+      },
+      {
+        "key_point": "组合采购享8折",
+        "status": "covered",
+        "evidence": "组合采购该套件可享受8折优惠。"
+      }
+    ],
+    "coverage_stats": {
+      "total": 4,
+      "covered": 4,
+      "missing": 0,
+      "contradicted": 0,
+      "coverage_rate": 1.0
+    },
+    "judge_status": "success"
+  },
+  {
+    "id": "holdout_cs_07",
+    "role": "客服",
+    "role_code": "service",
+    "question": "客户夜间发现安全事件，应该发到哪个邮箱，是否全天受理？普通服务邮件承诺多久回复？",
+    "reference_answer": "安全事件应发送至security@yunzhi-tech.example.com，该邮箱7×24受理；普通服务邮箱support@yunzhi-tech.example.com承诺24小时内回复。",
+    "key_points": [
+      "安全事件邮箱为security@yunzhi-tech.example.com",
+      "安全事件邮箱7×24受理",
+      "普通服务邮箱为support@yunzhi-tech.example.com",
+      "普通服务邮件24小时内回复"
+    ],
+    "source": "15-服务网点与联系方式.docx",
+    "system_answer": "客户夜间发现安全事件，应发送至 security@yunzhi-tech.example.com 或拨打 400 转安全值班。根据【参考资料：12-保密与信息安全管理制度.docx】，任何员工发现安全事件须在 30 分钟内报告该邮箱或电话。\n\n关于是否全天受理，【参考资料：04-故障报修流程.docx】指出，夜间（22:00~08:00）仅受理 P0/P1 级别事件。结合【参考资料：12-保密与信息安全管理制度.docx】中对安全事件的定义（P0 为数据泄露，P1 为服务中断），可确认涉及 P0/P1 的安全事件在夜间仍被受理，但未明确说明该邮箱是否 24 小时有人值守处理邮件。因此，**是否全天受理邮件形式的安全事件报告，根据现有资料无法完全确认**。\n\n关于普通服务邮件的回复承诺时限，参考资料中未提供相关信息。【参考资料：09-售后服务SLA标准.docx】仅定义了“响应”是指客服/工程师首次实质性回复，但未说明普通服务邮件的具体回复时限。因此，**普通服务邮件承诺多久回复，根据现有资料无法确认**。",
+    "rag_meta": {
+      "has_answer": true,
+      "retrieved_count": 10,
+      "valid_count": 6,
+      "reference_count": 5,
+      "total_time_ms": 8510,
+      "refusal_reason": null,
+      "retrieval_mode": "hybrid"
+    },
+    "model_metadata": {
+      "chat_model_name": "qwen3-max",
+      "chat_model_temperature": 0.0,
+      "chat_model_top_p": 1.0,
+      "judge_model_temperature": 0.0,
+      "judge_model_top_p": 1.0,
+      "timestamp": "2026-09-17T17:38:20.421091",
+      "prompt_modified": "2026-09-14T09:55:32.324503"
+    },
+    "verdict": "wrong",
+    "score": 0.0,
+    "reason": "覆盖 1/4 个要点 (25%)，有 2 个矛盾",
+    "key_points_result": [
+      {
+        "key_point": "安全事件邮箱为security@yunzhi-tech.example.com",
+        "status": "covered",
+        "evidence": "客户夜间发现安全事件，应发送至 security@yunzhi-tech.example.com"
+      },
+      {
+        "key_point": "安全事件邮箱7×24受理",
+        "status": "contradicted",
+        "evidence": "是否全天受理邮件形式的安全事件报告，根据现有资料无法完全确认"
+      },
+      {
+        "key_point": "普通服务邮箱为support@yunzhi-tech.example.com",
+        "status": "missing",
+        "evidence": ""
+      },
+      {
+        "key_point": "普通服务邮件24小时内回复",
+        "status": "contradicted",
+        "evidence": "普通服务邮件承诺多久回复，根据现有资料无法确认"
+      }
+    ],
+    "coverage_stats": {
+      "total": 4,
+      "covered": 1,
+      "missing": 1,
+      "contradicted": 2,
+      "coverage_rate": 0.25
+    },
+    "judge_status": "success"
+  },
+  {
+    "id": "holdout_admin_03",
+    "role": "管理员",
+    "role_code": "admin",
+    "question": "一个1000人的私有化部署，按运维指南估算，同时在线人数和每月新增存储量大约是多少？数据库磁盘建议按数据量的多少倍准备？",
+    "reference_answer": "同时在线人数按总人数30%估算，约300人；每用户每月约300MB，因此1000人每月约300GB；数据库磁盘建议按数据量3倍准备。",
+    "key_points": [
+      "同时在线人数按总人数30%估算",
+      "1000人约300人同时在线",
+      "1000人每月新增存储约300GB",
+      "数据库磁盘按数据量3倍准备"
+    ],
+    "source": "13-系统部署与运维指南.docx",
+    "system_answer": "根据【参考资料：13-系统部署与运维指南.docx】，对于一个1000人的私有化部署：\n\n- 同时在线人数估算为总人数的30%，即约300人（1000 × 30%）。\n- 每月新增存储量按每用户300MB计算，1000人每月新增存储量约为300GB（1000 × 300MB）。\n\n数据库磁盘建议按数据量的3倍准备（含备份与索引），依据为【参考资料：13-系统部署与运维指南.docx】。",
+    "rag_meta": {
+      "has_answer": true,
+      "retrieved_count": 10,
+      "valid_count": 6,
+      "reference_count": 4,
+      "total_time_ms": 5757,
+      "refusal_reason": null,
+      "retrieval_mode": "hybrid"
+    },
+    "model_metadata": {
+      "chat_model_name": "qwen3-max",
+      "chat_model_temperature": 0.0,
+      "chat_model_top_p": 1.0,
+      "judge_model_temperature": 0.0,
+      "judge_model_top_p": 1.0,
+      "timestamp": "2026-09-17T17:38:20.421091",
+      "prompt_modified": "2026-09-14T09:55:32.324503"
+    },
+    "verdict": "correct",
+    "score": 1.0,
+    "reason": "覆盖 4/4 个要点 (100%)",
+    "key_points_result": [
+      {
+        "key_point": "同时在线人数按总人数30%估算",
+        "status": "covered",
+        "evidence": "同时在线人数估算为总人数的30%"
+      },
+      {
+        "key_point": "1000人约300人同时在线",
+        "status": "covered",
+        "evidence": "即约300人（1000 × 30%）"
+      },
+      {
+        "key_point": "1000人每月新增存储约300GB",
+        "status": "covered",
+        "evidence": "1000人每月新增存储量约为300GB（1000 × 300MB）"
+      },
+      {
+        "key_point": "数据库磁盘按数据量的3倍准备",
+        "status": "covered",
+        "evidence": "数据库磁盘建议按数据量的3倍准备（含备份与索引）"
+      }
+    ],
+    "coverage_stats": {
+      "total": 4,
+      "covered": 4,
+      "missing": 0,
+      "contradicted": 0,
+      "coverage_rate": 1.0
+    },
+    "judge_status": "success"
+  },
+  {
+    "id": "holdout_admin_02",
+    "role": "管理员",
+    "role_code": "admin",
+    "question": "云智协同专业版每人每年多少钱，最多支持多少方会议，SLA是多少，是否支持私有化部署？",
+    "reference_answer": "专业版价格为598元/人/年，支持300方会议，SLA为99.9%，支持私有化部署且50人起。",
+    "key_points": [
+      "价格为598元每人每年",
+      "支持300方会议",
+      "SLA为99.9%",
+      "支持私有化部署且50人起"
+    ],
+    "source": "12-产品线介绍与版本对比.docx",
+    "system_answer": "根据现有资料：\n\n- **是否支持私有化部署**：是，云智协同 V5.2 支持私有化部署。根据【参考资料：01-云智协同办公平台产品白皮书V5.2.docx】，该版本支持公有云 SaaS 和私有化部署两种交付模式。\n\n- **最多支持多少方会议**：云智视频会议系统单场会议最多支持 1,000 方入会（企业版为 500 方）。根据【参考资料：07-云智视频会议系统使用手册.docx】。\n\n- **每人每年费用、SLA标准**：参考资料中未提供“云智协同专业版”的具体价格信息及 SLA（服务等级协议）数值。虽然【参考资料：09-售后服务SLA标准.docx】标题提及 SLA 标准，但未给出具体内容；同样，各参考资料均未说明专业版的年费定价。\n\n因此，关于“云智协同专业版每人每年多少钱”和“SLA是多少”，根据现有资料无法完全确认。",
+    "rag_meta": {
+      "has_answer": true,
+      "retrieved_count": 10,
+      "valid_count": 6,
+      "reference_count": 5,
+      "total_time_ms": 6818,
+      "refusal_reason": null,
+      "retrieval_mode": "hybrid"
+    },
+    "model_metadata": {
+      "chat_model_name": "qwen3-max",
+      "chat_model_temperature": 0.0,
+      "chat_model_top_p": 1.0,
+      "judge_model_temperature": 0.0,
+      "judge_model_top_p": 1.0,
+      "timestamp": "2026-09-17T17:38:20.421091",
+      "prompt_modified": "2026-09-14T09:55:32.324503"
+    },
+    "verdict": "wrong",
+    "score": 0.0,
+    "reason": "覆盖 0/4 个要点 (0%)，有 1 个矛盾",
+    "key_points_result": [
+      {
+        "key_point": "价格为598元每人每年",
+        "status": "missing",
+        "evidence": ""
+      },
+      {
+        "key_point": "支持300方会议",
+        "status": "contradicted",
+        "evidence": "云智视频会议系统单场会议最多支持 1,000 方入会（企业版为 500 方）"
+      },
+      {
+        "key_point": "SLA为99.9%",
+        "status": "missing",
+        "evidence": ""
+      },
+      {
+        "key_point": "支持私有化部署且50人起",
+        "status": "missing",
+        "evidence": "是，云智协同 V5.2 支持私有化部署。根据【参考资料：01-云智协同办公平台产品白皮书V5.2.docx】，该版本支持公有云 SaaS 和私有化部署两种交付模式。"
+      }
+    ],
+    "coverage_stats": {
+      "total": 4,
+      "covered": 0,
+      "missing": 3,
+      "contradicted": 1,
+      "coverage_rate": 0.0
+    },
+    "judge_status": "success"
+  },
+  {
+    "id": "holdout_admin_04",
+    "role": "管理员",
+    "role_code": "admin",
+    "question": "私有化部署前需要放行哪些端口？数据库版本和字符集有什么要求？",
+    "reference_answer": "需要放行443、8080、9092端口，以及内网3306端口；数据库要求MySQL 8.0并使用utf8mb4字符集。",
+    "key_points": [
+      "放行443端口",
+      "放行8080端口",
+      "放行9092端口",
+      "内网放行3306端口",
+      "数据库为MySQL 8.0",
+      "字符集为utf8mb4"
+    ],
+    "source": "13-系统部署与运维指南.docx",
+    "system_answer": "根据【参考资料：13-系统部署与运维指南.docx】和【参考资料：01-云智协同办公平台产品白皮书V5.2.docx】，私有化部署前需放行的端口包括：443、8080、9092、3306（内网）。此外，【参考资料：07-云智视频会议系统使用手册.docx】补充指出还需放行 UDP 3478 端口。\n\n关于数据库要求，【参考资料：13-系统部署与运维指南.docx】明确指出：需使用 MySQL 8.0，并已初始化，字符集必须为 utf8mb4。验证方法为执行 SQL 命令 `show variables like 'character%'`。",
+    "rag_meta": {
+      "has_answer": true,
+      "retrieved_count": 10,
+      "valid_count": 6,
+      "reference_count": 4,
+      "total_time_ms": 7765,
+      "refusal_reason": null,
+      "retrieval_mode": "hybrid"
+    },
+    "model_metadata": {
+      "chat_model_name": "qwen3-max",
+      "chat_model_temperature": 0.0,
+      "chat_model_top_p": 1.0,
+      "judge_model_temperature": 0.0,
+      "judge_model_top_p": 1.0,
+      "timestamp": "2026-09-17T17:38:20.421091",
+      "prompt_modified": "2026-09-14T09:55:32.324503"
+    },
+    "verdict": "correct",
+    "score": 1.0,
+    "reason": "覆盖 6/6 个要点 (100%)",
+    "key_points_result": [
+      {
+        "key_point": "放行443端口",
+        "status": "covered",
+        "evidence": "私有化部署前需放行的端口包括：443、8080、9092、3306（内网）"
+      },
+      {
+        "key_point": "放行8080端口",
+        "status": "covered",
+        "evidence": "私有化部署前需放行的端口包括：443、8080、9092、3306（内网）"
+      },
+      {
+        "key_point": "放行9092端口",
+        "status": "covered",
+        "evidence": "私有化部署前需放行的端口包括：443、8080、9092、3306（内网）"
+      },
+      {
+        "key_point": "内网放行3306端口",
+        "status": "covered",
+        "evidence": "私有化部署前需放行的端口包括：443、8080、9092、3306（内网）"
+      },
+      {
+        "key_point": "数据库为MySQL 8.0",
+        "status": "covered",
+        "evidence": "需使用 MySQL 8.0，并已初始化"
+      },
+      {
+        "key_point": "字符集为utf8mb4",
+        "status": "covered",
+        "evidence": "字符集必须为 utf8mb4"
+      }
+    ],
+    "coverage_stats": {
+      "total": 6,
+      "covered": 6,
+      "missing": 0,
+      "contradicted": 0,
+      "coverage_rate": 1.0
+    },
+    "judge_status": "success"
+  },
+  {
+    "id": "holdout_admin_05",
+    "role": "管理员",
+    "role_code": "admin",
+    "question": "产品的数据密钥多久轮换一次？密钥操作审计日志保留几年？私有化客户能否使用自持密钥？",
+    "reference_answer": "数据密钥按租户隔离并每季度轮换一次；密钥操作审计日志保留3年；私有化版本支持客户自持密钥，并可使用硬件加密机。",
+    "key_points": [
+      "数据密钥每季度轮换一次",
+      "密钥操作审计日志保留3年",
+      "私有化版本支持客户自持密钥",
+      "私有化版本支持硬件加密机"
+    ],
+    "source": "11-产品安全与隐私保护白皮书.docx",
+    "system_answer": "根据【参考资料：11-产品安全与隐私保护白皮书.docx】，产品的数据密钥按租户隔离，每季度轮换一次。\n\n根据【参考资料：11-产品安全与隐私保护白皮书.docx】，密钥操作全部记录审计日志，保留3年。\n\n根据【参考资料：11-产品安全与隐私保护白皮书.docx】，私有化版本支持客户自持密钥（BYOK），并支持硬件加密机。",
+    "rag_meta": {
+      "has_answer": true,
+      "retrieved_count": 10,
+      "valid_count": 6,
+      "reference_count": 2,
+      "total_time_ms": 5294,
+      "refusal_reason": null,
+      "retrieval_mode": "hybrid"
+    },
+    "model_metadata": {
+      "chat_model_name": "qwen3-max",
+      "chat_model_temperature": 0.0,
+      "chat_model_top_p": 1.0,
+      "judge_model_temperature": 0.0,
+      "judge_model_top_p": 1.0,
+      "timestamp": "2026-09-17T17:38:20.421091",
+      "prompt_modified": "2026-09-14T09:55:32.324503"
+    },
+    "verdict": "correct",
+    "score": 1.0,
+    "reason": "覆盖 4/4 个要点 (100%)",
+    "key_points_result": [
+      {
+        "key_point": "数据密钥每季度轮换一次",
+        "status": "covered",
+        "evidence": "产品的数据密钥按租户隔离，每季度轮换一次。"
+      },
+      {
+        "key_point": "密钥操作审计日志保留3年",
+        "status": "covered",
+        "evidence": "密钥操作全部记录审计日志，保留3年。"
+      },
+      {
+        "key_point": "私有化客户能否使用自持密钥",
+        "status": "covered",
+        "evidence": "私有化版本支持客户自持密钥（BYOK），并支持硬件加密机。"
+      },
+      {
+        "key_point": "私有化版本支持硬件加密机",
+        "status": "covered",
+        "evidence": "私有化版本支持客户自持密钥（BYOK），并支持硬件加密机。"
+      }
+    ],
+    "coverage_stats": {
+      "total": 4,
+      "covered": 4,
+      "missing": 0,
+      "contradicted": 0,
+      "coverage_rate": 1.0
+    },
+    "judge_status": "success"
+  },
+  {
+    "id": "holdout_admin_06",
+    "role": "管理员",
+    "role_code": "admin",
+    "question": "用户申请查询、更正、删除或导出个人数据时，产品承诺多久处理？默认是否会把企业个人信息用于算法训练？",
+    "reference_answer": "查询、更正、删除、导出个人数据的处理时限为15个工作日；个人信息默认不用于算法训练，只有企业显式授权“改进模型”时例外。",
+    "key_points": [
+      "个人数据权利请求15个工作日内处理",
+      "个人信息默认不用于算法训练",
+      "企业显式授权改进模型时可以例外"
+    ],
+    "source": "11-产品安全与隐私保护白皮书.docx",
+    "system_answer": "根据【参考资料：11-产品安全与隐私保护白皮书.docx】，用户申请查询、更正、删除或导出个人数据时，产品承诺在15个工作日内处理。\n\n根据【参考资料：11-产品安全与隐私保护白皮书.docx】，默认情况下，企业个人信息仅用于提供产品功能，不用于算法训练；但若企业显式授权“改进模型”，则可能用于算法训练。",
+    "rag_meta": {
+      "has_answer": true,
+      "retrieved_count": 10,
+      "valid_count": 6,
+      "reference_count": 3,
+      "total_time_ms": 5911,
+      "refusal_reason": null,
+      "retrieval_mode": "hybrid"
+    },
+    "model_metadata": {
+      "chat_model_name": "qwen3-max",
+      "chat_model_temperature": 0.0,
+      "chat_model_top_p": 1.0,
+      "judge_model_temperature": 0.0,
+      "judge_model_top_p": 1.0,
+      "timestamp": "2026-09-17T17:38:20.421091",
+      "prompt_modified": "2026-09-14T09:55:32.324503"
+    },
+    "verdict": "correct",
+    "score": 1.0,
+    "reason": "覆盖 3/3 个要点 (100%)",
+    "key_points_result": [
+      {
+        "key_point": "个人数据权利请求15个工作日内处理",
+        "status": "covered",
+        "evidence": "用户申请查询、更正、删除或导出个人数据时，产品承诺在15个工作日内处理。"
+      },
+      {
+        "key_point": "个人信息默认不用于算法训练",
+        "status": "covered",
+        "evidence": "默认情况下，企业个人信息仅用于提供产品功能，不用于算法训练"
+      },
+      {
+        "key_point": "企业显式授权改进模型时可以例外",
+        "status": "covered",
+        "evidence": "但若企业显式授权“改进模型”，则可能用于算法训练。"
+      }
+    ],
+    "coverage_stats": {
+      "total": 3,
+      "covered": 3,
+      "missing": 0,
+      "contradicted": 0,
+      "coverage_rate": 1.0
+    },
+    "judge_status": "success"
+  },
+  {
+    "id": "holdout_admin_08",
+    "role": "管理员",
+    "role_code": "admin",
+    "question": "产品取得ISO/IEC 27701隐私管理认证和SOC 2 Type II报告的时间分别是什么时候，各自覆盖什么范围？",
+    "reference_answer": "ISO/IEC 27701隐私管理认证于2024年9月取得，覆盖云智协同和云智客服；SOC 2 Type II报告于2025年6月首次出具，覆盖云智协同公有云。",
+    "key_points": [
+      "ISO/IEC 27701于2024年9月取得",
+      "ISO/IEC 27701覆盖云智协同和云智客服",
+      "SOC 2 Type II于2025年6月首次出具",
+      "SOC 2 Type II覆盖云智协同公有云"
+    ],
+    "source": "11-产品安全与隐私保护白皮书.docx",
+    "system_answer": "根据【参考资料：11-产品安全与隐私保护白皮书.docx】：\n\n- **ISO/IEC 27701 隐私管理认证**取得时间为**2024年9月**，覆盖范围为**云智协同、云智客服**。  \n- **SOC 2 Type II 报告**首次出具时间为**2025年6月**，覆盖范围为**云智协同公有云**。",
+    "rag_meta": {
+      "has_answer": true,
+      "retrieved_count": 10,
+      "valid_count": 5,
+      "reference_count": 2,
+      "total_time_ms": 4591,
+      "refusal_reason": null,
+      "retrieval_mode": "hybrid"
+    },
+    "model_metadata": {
+      "chat_model_name": "qwen3-max",
+      "chat_model_temperature": 0.0,
+      "chat_model_top_p": 1.0,
+      "judge_model_temperature": 0.0,
+      "judge_model_top_p": 1.0,
+      "timestamp": "2026-09-17T17:38:20.421091",
+      "prompt_modified": "2026-09-14T09:55:32.324503"
+    },
+    "verdict": "correct",
+    "score": 1.0,
+    "reason": "覆盖 4/4 个要点 (100%)",
+    "key_points_result": [
+      {
+        "key_point": "ISO/IEC 27701于2024年9月取得",
+        "status": "covered",
+        "evidence": "ISO/IEC 27701 隐私管理认证取得时间为2024年9月"
+      },
+      {
+        "key_point": "ISO/IEC 27701覆盖云智协同和云智客服",
+        "status": "covered",
+        "evidence": "覆盖范围为云智协同、云智客服"
+      },
+      {
+        "key_point": "SOC 2 Type II于2025年6月首次出具",
+        "status": "covered",
+        "evidence": "SOC 2 Type II 报告首次出具时间为2025年6月"
+      },
+      {
+        "key_point": "SOC 2 Type II覆盖云智协同公有云",
+        "status": "covered",
+        "evidence": "覆盖范围为云智协同公有云"
+      }
+    ],
+    "coverage_stats": {
+      "total": 4,
+      "covered": 4,
+      "missing": 0,
+      "contradicted": 0,
+      "coverage_rate": 1.0
+    },
+    "judge_status": "success"
+  },
+  {
+    "id": "holdout_admin_07",
+    "role": "管理员",
+    "role_code": "admin",
+    "question": "系统日志默认保存在哪里、保留多久？排查跨服务问题时建议用什么标识追踪？",
+    "reference_answer": "日志统一保存在/var/log/yunzhi/，按服务分文件并保留14天；跨服务排查使用trace_id进行全链路追踪。",
+    "key_points": [
+      "日志目录为/var/log/yunzhi/",
+      "日志保留14天",
+      "使用trace_id进行全链路追踪"
+    ],
+    "source": "13-系统部署与运维指南.docx",
+    "system_answer": "系统日志默认保存在统一日志目录 /var/log/yunzhi/，按服务分文件（如 im.log、approval.log、doc.log 等），格式为 JSON。日志保留 14 天。该信息根据【参考资料：13-系统部署与运维指南.docx】。\n\n排查跨服务问题时，建议使用 trace_id 进行全链路追踪。该建议在【参考资料：13-系统部署与运维指南.docx】中明确指出“结合 trace_id 全链路追踪”，并在【参考资料：06-常见故障排查手册.docx】中进一步说明“服务端按 trace_id 查询消息投递日志”，同时【参考资料：04-故障报修流程.docx】提到可通过“日志检索平台 | 按 trace_id 全链路查日志”进行排查。",
+    "rag_meta": {
+      "has_answer": true,
+      "retrieved_count": 10,
+      "valid_count": 6,
+      "reference_count": 5,
+      "total_time_ms": 7855,
+      "refusal_reason": null,
+      "retrieval_mode": "hybrid"
+    },
+    "model_metadata": {
+      "chat_model_name": "qwen3-max",
+      "chat_model_temperature": 0.0,
+      "chat_model_top_p": 1.0,
+      "judge_model_temperature": 0.0,
+      "judge_model_top_p": 1.0,
+      "timestamp": "2026-09-17T17:38:20.421091",
+      "prompt_modified": "2026-09-14T09:55:32.324503"
+    },
+    "verdict": "correct",
+    "score": 1.0,
+    "reason": "覆盖 3/3 个要点 (100%)",
+    "key_points_result": [
+      {
+        "key_point": "日志目录为/var/log/yunzhi/",
+        "status": "covered",
+        "evidence": "系统日志默认保存在统一日志目录 /var/log/yunzhi/"
+      },
+      {
+        "key_point": "日志保留14天",
+        "status": "covered",
+        "evidence": "日志保留 14 天"
+      },
+      {
+        "key_point": "使用trace_id进行全链路追踪",
+        "status": "covered",
+        "evidence": "排查跨服务问题时，建议使用 trace_id 进行全链路追踪"
+      }
+    ],
+    "coverage_stats": {
+      "total": 3,
+      "covered": 3,
+      "missing": 0,
+      "contradicted": 0,
+      "coverage_rate": 1.0
+    },
+    "judge_status": "success"
+  }
+]

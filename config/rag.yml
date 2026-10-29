@@ -1,2 +1,12 @@
 chat_model_name: qwen3-max
 embedding_model_name: text-embedding-v4
+
+# 生成稳定性配置
+# temperature=0 确保相同输入产生一致的输出（减少随机性）
+# top_p=1.0 不进行核采样截断，使用完整概率分布
+chat_model_temperature: 0.0
+chat_model_top_p: 1.0
+
+# 裁判模型配置（用于评测）
+judge_model_temperature: 0.0
+judge_model_top_p: 1.0

@@ -106,3 +106,82 @@ class InteractionService:
 
         finally:
             session.close()
+
+    @staticmethod
+    def get_user_sessions(user_id: int, limit: int = 50) -> list:
+        """
+        获取用户的会话列表
+        :param user_id: 用户ID
+        :param limit: 返回数量限制
+        :return: 会话列表
+        """
+        session = get_session()
+        try:
+            sessions = session.query(ChatSession).filter_by(
+                user_id=user_id
+            ).order_by(ChatSession.updated_at.desc()).limit(limit).all()
+
+            result = []
+            for chat_session in sessions:
+                # 获取第一条消息作为标题
+                first_message = session.query(ChatMessage).filter_by(
+                    session_id=chat_session.id
+                ).order_by(ChatMessage.created_at).first()
+
+                # 获取消息数量
+                message_count = session.query(ChatMessage).filter_by(
+                    session_id=chat_session.id
+                ).count()
+
+                # 生成标题
+                if chat_session.title:
+                    title = chat_session.title
+                elif first_message:
+                    # 截取前30个字符作为标题
+                    title = first_message.user_query[:30] + ('...' if len(first_message.user_query) > 30 else '')
+                else:
+                    title = "空会话"
+
+                result.append({
+                    'id': chat_session.id,
+                    'title': title,
+                    'message_count': message_count,
+                    'created_at': chat_session.created_at,
+                    'updated_at': chat_session.updated_at
+                })
+
+            return result
+
+        finally:
+            session.close()
+
+    @staticmethod
+    def update_session_title(session_id: int, user_id: int, title: str) -> dict:
+        """
+        更新会话标题
+        :param session_id: 会话ID
+        :param user_id: 用户ID
+        :param title: 新标题
+        :return: {success, message}
+        """
+        session = get_session()
+        try:
+            chat_session = session.query(ChatSession).filter_by(
+                id=session_id,
+                user_id=user_id
+            ).first()
+
+            if not chat_session:
+                return {'success': False, 'message': '会话不存在'}
+
+            chat_session.title = title
+            session.commit()
+
+            return {'success': True, 'message': '标题更新成功'}
+
+        except Exception as e:
+            session.rollback()
+            logger.error(f"更新会话标题失败：{str(e)}", exc_info=True)
+            return {'success': False, 'message': '更新失败'}
+        finally:
+            session.close()

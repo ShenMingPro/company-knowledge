@@ -33,10 +33,10 @@ class TestScoreInterpretation:
 
     def test_score_threshold_semantics(self):
         """测试阈值语义：距离越小越相关"""
-        rag = RagSummarizeService(user_role='employee')
+        rag = RagSummarizeService(user_role='employee', use_hybrid=False)
 
-        # 阈值0.8表示：距离<=0.8的文档通过
-        assert 0.5 <= rag.RELEVANCE_THRESHOLD <= 1.0
+        # 阈值1.2表示：距离<=1.2的文档通过
+        assert rag.RELEVANCE_THRESHOLD >= 0.5
         print(f"✅ 相关性阈值: {rag.RELEVANCE_THRESHOLD} (距离)")
 
 
@@ -85,7 +85,7 @@ class TestRefusalMechanism:
         """测试无结果时不调用模型"""
         mock_retriever.return_value = ([], [])
 
-        rag = RagSummarizeService(user_role='employee')
+        rag = RagSummarizeService(user_role='employee', use_hybrid=False)
         result = rag.rag_summarize("不存在的问题")
 
         assert result['has_answer'] is False
@@ -101,7 +101,7 @@ class TestRefusalMechanism:
         scores = [2.0]  # 距离很大，低相关
         mock_retriever.return_value = (docs, scores)
 
-        rag = RagSummarizeService(user_role='employee')
+        rag = RagSummarizeService(user_role='employee', use_hybrid=False)
         result = rag.rag_summarize("测试问题")
 
         assert result['has_answer'] is False
@@ -210,7 +210,7 @@ class TestPermissionFiltering:
         # employee角色只能访问产品知识库(space_id=1)
         mock_retriever.return_value = ([], [])
 
-        rag = RagSummarizeService(user_role='employee')
+        rag = RagSummarizeService(user_role='employee', use_hybrid=False)
         result = rag.rag_summarize("测试问题")
 
         # 确认调用了检索（即使没结果）
@@ -237,7 +237,7 @@ class TestPromptInjection:
         )
 
         mock_retriever.return_value = ([malicious_doc], [0.3])
-        mock_validate.return_value = ([malicious_doc], "")
+        mock_validate.return_value = ([malicious_doc], [0.3], "")
 
         rag = RagSummarizeService(user_role='employee')
 
@@ -260,7 +260,7 @@ class TestErrorHandling:
         """测试模型异常不向用户暴露堆栈"""
         mock_retriever.side_effect = Exception("模拟的内部错误")
 
-        rag = RagSummarizeService(user_role='employee')
+        rag = RagSummarizeService(user_role='employee', use_hybrid=False)
         result = rag.rag_summarize("测试问题")
 
         # 向用户显示的是统一拒答消息
@@ -284,7 +284,7 @@ class TestPerformanceMetrics:
         """测试耗时统计"""
         doc = Document(page_content="测试", metadata={"source_name": "test.pdf"})
         mock_retriever.return_value = ([doc], [0.3])
-        mock_validate.return_value = ([doc], "")
+        mock_validate.return_value = ([doc], [0.3], "")
 
         rag = RagSummarizeService(user_role='employee')
         result = rag.rag_summarize("测试")
@@ -308,9 +308,9 @@ class TestPerformanceMetrics:
             Document(page_content="doc2", metadata={"source_name": "2.pdf"}),
         ]
         mock_retriever.return_value = (docs, [0.3, 0.4])
-        mock_validate.return_value = (docs[:1], "")  # 只有1个有效
+        mock_validate.return_value = (docs[:1], [0.3], "")  # 只有1个有效，返回3个值
 
-        rag = RagSummarizeService(user_role='employee')
+        rag = RagSummarizeService(user_role='employee', use_hybrid=False)
         result = rag.rag_summarize("测试")
 
         assert result['retrieved_count'] == 2

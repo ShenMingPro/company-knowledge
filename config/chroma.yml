@@ -1,10 +1,31 @@
 collection_name: agent
 persist_directory: chroma_db
-k: 3
-data_path: data
-md5_hex_store: md5.text
-allow_knowledge_file_type: ["txt", "pdf", "docx"]
-
+k: 6
 chunk_size: 200
 chunk_overlap: 20
 separators: ["\n\n", "\n", ".", "!", "?", "。", "！", "？", " ", ""]
+
+# 混合检索配置
+hybrid_retrieval:
+  enabled: true
+  vector_candidate_k: 10
+  bm25_candidate_k: 10
+  final_top_k: 6
+  rrf_constant: 60
+
+# Query 改写配置
+query_rewrite:
+  enabled: true
+  history_turns: 3
+  max_output_length: 200
+  assistant_answer_max_length: 500
+
+# Reranker 精排配置
+reranker:
+  enabled: true
+  model: gte-rerank-v2
+  candidate_k: 10  # RRF 后送入精排的最大候选数
+  output_top_k: 6  # 精排后保留数量
+  max_query_chars: 500  # 发送到云端的问题最大字符数
+  max_document_chars: 1200  # 单个候选片段发送到云端的最大字符数
+  timeout_seconds: 8  # 调用超时配置

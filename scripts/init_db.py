@@ -126,7 +126,8 @@ def main():
     print("  普通员工 - 用户名: employee, 密码: 见.env配置")
     print("  客服     - 用户名: service,  密码: 见.env配置")
     print("  管理员   - 用户名: admin,    密码: 见.env配置")
-    print("\n启动命令：streamlit run app.py")
+    print("\n后端启动命令：uvicorn backend.app.main:app --reload --port 8000")
+    print("前端启动命令：cd frontend && npm run dev")
     print("=" * 50)
 
 

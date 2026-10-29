@@ -3,7 +3,6 @@
 """
 import os
 import sys
-import io
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -146,13 +145,10 @@ def test_permission_service():
     print("\n" + "="*60)
     print("✓ 权限控制测试全部通过！")
     print("="*60)
-    return True
-
-
 if __name__ == "__main__":
     try:
-        success = test_permission_service()
-        sys.exit(0 if success else 1)
+        test_permission_service()
+        sys.exit(0)
     except AssertionError as e:
         print(f"\n✗ 测试失败: {e}")
         sys.exit(1)

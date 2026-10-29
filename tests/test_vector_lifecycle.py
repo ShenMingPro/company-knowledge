@@ -46,7 +46,7 @@ def setup_test_env():
         session.close()
 
 
-def test_vector_lifecycle():
+def run_vector_lifecycle():
     """测试向量生命周期"""
     print("\n" + "="*60)
     print("向量生命周期集成测试")
@@ -321,5 +321,9 @@ def test_vector_lifecycle():
 
 
 if __name__ == "__main__":
-    success = test_vector_lifecycle()
+    success = run_vector_lifecycle()
     sys.exit(0 if success else 1)
+
+
+def test_vector_lifecycle():
+    assert run_vector_lifecycle()

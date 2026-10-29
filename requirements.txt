@@ -1,24 +1,22 @@
-# Web框架
-streamlit==1.32.0
-
 # LangChain核心
-langchain==0.1.16
-langchain-core==0.1.45
-langchain-community==0.0.34
+langchain==1.2.10
+langchain-core==1.4.0
+langchain-community==0.4.1
 
 # 向量数据库
-langchain-chroma==0.1.0
-chromadb==0.4.24
+langchain-chroma==1.1.0
+chromadb==1.5.2
 
 # 文档处理
 pypdf==4.1.0
 python-docx==1.1.0
+openpyxl==3.1.5
 
 # DashScope（阿里云通义千问）
 dashscope==1.14.1
 
 # 文本分割
-langchain-text-splitters==0.0.1
+langchain-text-splitters==1.1.1
 
 # 配置管理
 python-dotenv==1.0.1
@@ -32,3 +30,19 @@ bcrypt==4.1.2
 
 # 日志
 loguru==0.7.2
+
+# 中文分词和BM25检索
+jieba==0.42.1
+rank-bm25==0.2.2
+
+# FastAPI 后端
+fastapi==0.115.12
+uvicorn[standard]==0.34.2
+python-multipart==0.0.20
+
+# MySQL 8
+pymysql[rsa]==1.1.1
+redis==5.2.1
+
+# JWT 认证
+PyJWT==2.10.1

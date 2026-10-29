@@ -4,8 +4,8 @@
 import os
 from datetime import datetime
 from sqlalchemy import create_engine, Column, Integer, String, Text, DateTime, Boolean, ForeignKey, JSON
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker, relationship
+from sqlalchemy.engine import Engine, URL
+from sqlalchemy.orm import declarative_base, sessionmaker, relationship
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -53,7 +53,15 @@ class Document(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(255), nullable=False)
     space_id = Column(Integer, ForeignKey('knowledge_spaces.id'), nullable=False)
-    current_version_id = Column(Integer, ForeignKey('document_versions.id'), nullable=True)
+    current_version_id = Column(
+        Integer,
+        ForeignKey(
+            'document_versions.id',
+            name='fk_documents_current_version',
+            use_alter=True
+        ),
+        nullable=True
+    )
     created_by = Column(Integer, ForeignKey('users.id'), nullable=False)
     created_at = Column(DateTime, default=datetime.now, nullable=False)
     is_deleted = Column(Boolean, default=False, nullable=False)
@@ -153,23 +161,61 @@ class AuditLog(Base):
 
 
 # 数据库引擎和会话
-def get_engine():
-    """获取数据库引擎"""
+_engines: dict[str | URL, Engine] = {}
+
+
+def get_database_url() -> str | URL:
+    """返回数据库连接地址；生产环境优先使用 DATABASE_URL。"""
+    database_url = os.getenv("DATABASE_URL")
+    if database_url:
+        return database_url
+
+    mysql_host = os.getenv("MYSQL_HOST")
+    if mysql_host:
+        return URL.create(
+            drivername="mysql+pymysql",
+            username=os.getenv("MYSQL_USER", "knowbase"),
+            password=os.getenv("MYSQL_PASSWORD", ""),
+            host=mysql_host,
+            port=int(os.getenv("MYSQL_PORT", "3306")),
+            database=os.getenv("MYSQL_DATABASE", "knowbase"),
+            query={"charset": "utf8mb4"},
+        )
+
+    # 保留 SQLite 作为本地开发和现有测试的兼容模式。
     db_path = os.getenv("DATABASE_PATH", "data/knowbase.db")
-
-    # 支持内存数据库（用于测试）
     if db_path == ':memory:':
-        return create_engine('sqlite:///:memory:', echo=False)
+        return 'sqlite:///:memory:'
 
-    # 确保目录存在
-    os.makedirs(os.path.dirname(db_path), exist_ok=True)
-    return create_engine(f'sqlite:///{db_path}', echo=False)
+    db_dir = os.path.dirname(db_path)
+    if db_dir:
+        os.makedirs(db_dir, exist_ok=True)
+    return f'sqlite:///{db_path}'
+
+
+def get_engine() -> Engine:
+    """获取当前配置对应的 SQLAlchemy 引擎。"""
+    database_url = get_database_url()
+    engine = _engines.get(database_url)
+    if engine is not None:
+        return engine
+
+    options = {"echo": False, "pool_pre_ping": True}
+    driver_name = database_url.drivername if isinstance(database_url, URL) else database_url
+    if driver_name.startswith("sqlite"):
+        options["connect_args"] = {"check_same_thread": False}
+    else:
+        options["pool_recycle"] = 1800
+
+    engine = create_engine(database_url, **options)
+    _engines[database_url] = engine
+    return engine
 
 
 def get_session():
     """获取数据库会话"""
     engine = get_engine()
-    Session = sessionmaker(bind=engine)
+    Session = sessionmaker(bind=engine, expire_on_commit=False)
     return Session()
 
 

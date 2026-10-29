@@ -3,18 +3,49 @@
 """
 import os
 import sys
-import io
 import tempfile
 import shutil
+import pytest
 
 # 设置stdout编码为UTF-8
 
 # 添加项目根目录到路径
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+from models import database as database_module
 from models.database import init_database, get_session, Document, DocumentVersion, User, KnowledgeSpace
 from services.document_service import DocumentService
 from services.auth_service import AuthService
+
+
+@pytest.fixture(autouse=True)
+def isolated_database_and_storage(tmp_path, monkeypatch):
+    """Keep document service tests independent from local development data."""
+    database_url = f"sqlite:///{(tmp_path / 'document-service.db').as_posix()}"
+    storage_dir = tmp_path / "documents"
+    monkeypatch.setenv("DATABASE_URL", database_url)
+    monkeypatch.setattr(
+        DocumentService,
+        "get_version_file_path",
+        staticmethod(
+            lambda document_id, version_number, filename: str(
+                storage_dir / str(document_id) / f"v{version_number}_{DocumentService.sanitize_filename(filename)}"
+            )
+        ),
+    )
+
+    original_copy = shutil.copy
+
+    def copy_with_parent(source, destination):
+        os.makedirs(os.path.dirname(destination), exist_ok=True)
+        return original_copy(source, destination)
+
+    monkeypatch.setattr(shutil, "copy", copy_with_parent)
+    yield
+
+    engine = database_module._engines.pop(database_url, None)
+    if engine is not None:
+        engine.dispose()
 
 
 def setup_test_env():

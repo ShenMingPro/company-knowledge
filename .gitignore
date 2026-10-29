@@ -6,6 +6,7 @@ __pycache__/
 .Python
 env/
 venv/
+.venv/
 ENV/
 build/
 develop-eggs/
@@ -25,6 +26,17 @@ wheels/
 
 # 环境变量
 .env
+.env.*
+!.env.example
+
+# 测试缓存
+.pytest_cache/
+.coverage
+htmlcov/
+
+# 前端依赖与构建缓存
+node_modules/
+*.tsbuildinfo
 
 # 日志
 logs/
